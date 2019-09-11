@@ -1,3 +1,5 @@
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 
 /*
@@ -11,16 +13,17 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 For support, please feel free to contact me at https://www.linkedin.com/in/syedabsar */
 
-
+@Entity
 data class Route (
 
+	@PrimaryKey
 	@SerializedName("id") val id : String,
-	@SerializedName("combination_id") val combination_id : String,
+//	@SerializedName("combination_id") val combination_id : String,
 	@SerializedName("return") val mReturn : Int,
-	@SerializedName("original_return") val original_return : Int,
-	@SerializedName("source") val source : String,
-	@SerializedName("found_on") val found_on : String,
-	@SerializedName("price") val price : Int,
+//	@SerializedName("original_return") val original_return : Int,
+//	@SerializedName("source") val source : String,
+//	@SerializedName("found_on") val found_on : String,
+//	@SerializedName("price") val price : Int,
 	@SerializedName("aTime") val aTime : Int,
 	@SerializedName("dTime") val dTime : Int,
 	@SerializedName("aTimeUTC") val aTimeUTC : Int,
@@ -40,13 +43,13 @@ data class Route (
 	@SerializedName("lngTo") val lngTo : Double,
 	@SerializedName("flight_no") val flight_no : Int,
 	@SerializedName("vehicle_type") val vehicle_type : String,
-	@SerializedName("refresh_timestamp") val refresh_timestamp : Int,
+//	@SerializedName("refresh_timestamp") val refresh_timestamp : Int,
 	@SerializedName("bags_recheck_required") val bags_recheck_required : Boolean,
-	@SerializedName("guarantee") val guarantee : Boolean,
+//	@SerializedName("guarantee") val guarantee : Boolean,
 	@SerializedName("fare_classes") val fare_classes : String,
 	@SerializedName("fare_basis") val fare_basis : String,
-	@SerializedName("fare_family") val fare_family : String,
-	@SerializedName("fare_category") val fare_category : String,
-	@SerializedName("last_seen") val last_seen : Int,
-	@SerializedName("operating_flight_no") val operating_flight_no : Int
+	@SerializedName("fare_family") val fare_family : String
+//	@SerializedName("fare_category") val fare_category : String,
+//	@SerializedName("last_seen") val last_seen : Int,
+//	@SerializedName("operating_flight_no") val operating_flight_no : Int
 )
