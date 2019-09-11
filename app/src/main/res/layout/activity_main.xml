@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/coordinatorLayout"
+    android:background="@color/colorPrimary"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <io.github.rokarpov.backdrop.BackdropBackLayer
+        tools:context=".activities.MainActivity"
+        android:id="@+id/backdropBackLayer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            app:layout_childType="header"/>
+
+        <!--<io.github.rokarpov.backdrop.demo.SearchBackView
+            android:id="@+id/main__search_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_childType="content"
+            app:layout_hideHeaderOnReveal="true"
+            app:layout_minRevealedFrontViewHeight="@dimen/subheader_height"/>-->
+    </io.github.rokarpov.backdrop.BackdropBackLayer>
+
+    <io.github.rokarpov.backdrop.BackdropFrontLayer
+        android:id="@+id/backdropFrontLayer"
+        android:background="@drawable/bg_backdrop_front_layer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/backdrop_front_layer_behavior"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/subheader_height"
+            app:layout_childType="header">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="@string/app_name"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </io.github.rokarpov.backdrop.BackdropFrontLayer>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
