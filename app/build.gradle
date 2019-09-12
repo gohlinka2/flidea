@@ -70,5 +70,5 @@ dependencies {
     implementation 'androidx.fragment:fragment-ktx:1.1.0'
 
     //gohlinka2 utils
-    implementation 'com.github.gohlinka2:gohlinka2_utils:v1.0.0'
+    implementation 'com.github.gohlinka2:gohlinka2_utils:v1.1.0'
 }
