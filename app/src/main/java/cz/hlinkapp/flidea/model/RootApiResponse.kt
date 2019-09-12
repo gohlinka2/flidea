@@ -16,16 +16,16 @@ data class RootApiResponse (
 
     @SerializedName("search_id") val search_id : String,
     @SerializedName("data") val data: List<Flight>,
-    @SerializedName("connections") val connections : List<String>,
-    @SerializedName("time") val time : Int,
+//    @SerializedName("connections") val connections : List<String>,
+//    @SerializedName("time") val time : Int,
     @SerializedName("currency") val currency : String,
     @SerializedName("currency_rate") val currency_rate : Int,
-    @SerializedName("fx_rate") val fx_rate : Int,
-    @SerializedName("refresh") val refresh : List<String>,
-    @SerializedName("del") val del : Double,
-    @SerializedName("ref_tasks") val ref_tasks : List<String>,
-    @SerializedName("search_params") val search_params : SearchParams,
-    @SerializedName("all_stopover_airports") val all_stopover_airports : List<String>,
-    @SerializedName("all_airlines") val all_airlines : List<String>,
-    @SerializedName("_results") val _results : Int
+//    @SerializedName("fx_rate") val fx_rate : Int,
+//    @SerializedName("refresh") val refresh : List<String>,
+//    @SerializedName("del") val del : Double,
+//    @SerializedName("ref_tasks") val ref_tasks : List<String>,
+    @SerializedName("search_params") val search_params : SearchParams
+//    @SerializedName("all_stopover_airports") val all_stopover_airports : List<String>,
+//    @SerializedName("all_airlines") val all_airlines : List<String>,
+//    @SerializedName("_results") val _results : Int
 )
