@@ -1,9 +1,9 @@
 package cz.hlinkapp.flidea.view_models
 
-import Flight
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import cz.hlinkapp.flidea.data.repositories.MainRepository
+import cz.hlinkapp.flidea.model.Flight
 import cz.hlinkapp.gohlinka2_utils2.utils.RequestInfo
 import javax.inject.Inject
 
@@ -22,7 +22,7 @@ class MainViewModel @Inject constructor(repository: MainRepository): ViewModel()
         if (mFlights == null) mFlights = mMainRepository.getFlights()
     }
 
-    fun forceRefreshFlights() {
+    /*fun forceRefreshFlights() {
         mFlights = mMainRepository.forceRefreshFlights()
-    }
+    }*/
 }
