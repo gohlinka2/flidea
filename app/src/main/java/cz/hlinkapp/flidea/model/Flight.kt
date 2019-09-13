@@ -19,6 +19,8 @@ For support, please feel free to contact me at https://www.linkedin.com/in/syeda
 data class Flight (
 	@PrimaryKey
 	@SerializedName("id") val id : String,
+	val display_day_timestamp : Long,
+	val fetched_timestamp: Long,
 	@SerializedName("bags_price") val bags_price : Map<String,Int>,
 	@SerializedName("baglimit") val baglimit : BagLimit,
 //	@SerializedName("p1") val p1 : Int,
@@ -55,6 +57,11 @@ data class Flight (
 //	@SerializedName("found_on") val found_on : List<String>,
 	@SerializedName("conversion") val conversion : Map<String,Double>,
 	@SerializedName("booking_token") val booking_token : String,
-//	@SerializedName("quality") val quality : Double,
+	@SerializedName("popularity") val popularity : Long,
+	@SerializedName("quality") val quality : Double,
 	@SerializedName("deep_link") val deep_link : String
-)
+) {
+	companion object {
+		const val DISPLAY_DAY_TIMESTAMP_DEF_VAL = Long.MIN_VALUE
+	}
+}
