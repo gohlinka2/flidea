@@ -1,3 +1,6 @@
+package cz.hlinkapp.flidea.model
+
+
 import com.google.gson.annotations.SerializedName
 
 /*

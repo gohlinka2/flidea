@@ -1,3 +1,5 @@
+package cz.hlinkapp.flidea.model
+
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
