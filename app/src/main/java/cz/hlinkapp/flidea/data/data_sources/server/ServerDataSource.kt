@@ -1,5 +1,6 @@
 package cz.hlinkapp.flidea.data.data_sources.server
 
+import Flight.Companion.DISPLAY_DAY_TIMESTAMP_DEF_VAL
 import RootApiResponse
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -21,6 +22,7 @@ import cz.hlinkapp.flidea.contracts.ServerContract.Companion.VAL_ONE_FOR_CITY
 import cz.hlinkapp.flidea.contracts.ServerContract.Companion.VAL_PARTNER
 import cz.hlinkapp.flidea.data.data_sources.room.MainDao
 import cz.hlinkapp.flidea.utils.SharedPrefHelper
+import cz.hlinkapp.flidea.utils.getStartOfDayTimestamp
 import cz.hlinkapp.gohlinka2_utils2.utils.ConnectivityChecker
 import cz.hlinkapp.gohlinka2_utils2.utils.RequestInfo
 import retrofit2.Call
@@ -78,10 +80,15 @@ class ServerDataSource @Inject constructor(
                     RequestInfo.done(
                         RequestInfo.RequestResult.FAILED))
                 override fun onResponse(call: Call<RootApiResponse>, response: Response<RootApiResponse>) =
-                    if (response.isSuccessful && response.body() != null) {
+                    if (response.isSuccessful && response.body() != null && response.body()!!.data.isNotEmpty()) {
                         mExecutor.execute {
-                            mDao.saveArticles(response.body()!!)
-                            mSharedPrefUtil.updateArticlesLastFetchedTime()
+                            for (flight in response.body()!!.data) {
+                                flight.fetched_timestamp = Calendar.getInstance().timeInMillis
+                                flight.display_day_timestamp = DISPLAY_DAY_TIMESTAMP_DEF_VAL
+                            }
+                            mDao.saveFlights(response.body()!!.data)
+                            mDao.selectNewFlightsForDisplay(getStartOfDayTimestamp())
+                            mSharedPrefHelper.saveLastFetchedDay()
                             status.postValue(RequestInfo.done(RequestInfo.RequestResult.OK))
                         } } else status.postValue(RequestInfo.done(RequestInfo.RequestResult.FAILED)) })
         } else status.postValue(RequestInfo.done(RequestInfo.RequestResult.NO_INTERNET))
