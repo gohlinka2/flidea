@@ -4,8 +4,8 @@ interface ServerContract {
 
     companion object {
         const val PROTOCOL = "https://"
-        const val BASE_URL = "${PROTOCOL}api.skypicker.com"
-        const val FLIGHTS = "${BASE_URL}/flights"
+        const val BASE_URL = "${PROTOCOL}api.skypicker.com/"
+        const val FLIGHTS = "flights"
 
         //Query parameters
         const val QP_FLY_FROM = "fly_from"
