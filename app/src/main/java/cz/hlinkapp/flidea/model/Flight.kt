@@ -62,6 +62,6 @@ data class Flight (
 	@SerializedName("deep_link") var deep_link : String
 ) {
 	companion object {
-		const var DISPLAY_DAY_TIMESTAMP_DEF_VAL = Long.MIN_VALUE
+		const val DISPLAY_DAY_TIMESTAMP_DEF_VAL = Long.MIN_VALUE
 	}
 }
