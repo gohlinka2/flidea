@@ -53,6 +53,10 @@ class ServerDataSource @Inject constructor(
 
     val flightsStatus: LiveData<RequestInfo> get() = mFlightsStatus
 
+    /**
+     * Downloads new flight ideas from the server, saves the to the db and marks the new flights to be displayed.
+     * Only executes the task when there is access to internet, no previous task is running and the data hasn't been downloaded yet today.
+     */
     fun refreshFlights() {
         val status = mFlightsStatus
         if ( mSharedPrefHelper.shouldFetchNewData() && status.value?.isProcessing() == false) if (mConnectivityChecker.isConnected()) {
