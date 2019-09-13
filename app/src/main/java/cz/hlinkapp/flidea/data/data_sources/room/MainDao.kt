@@ -1,12 +1,12 @@
 package cz.hlinkapp.flidea.data.data_sources.room
 
-import Flight
-import Flight.Companion.DISPLAY_DAY_TIMESTAMP_DEF_VAL
+import cz.hlinkapp.flidea.model.Flight.Companion.DISPLAY_DAY_TIMESTAMP_DEF_VAL
 import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import cz.hlinkapp.flidea.model.Flight
 
 @Dao
 interface MainDao {

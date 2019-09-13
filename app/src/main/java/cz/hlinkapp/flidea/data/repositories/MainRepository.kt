@@ -1,9 +1,9 @@
 package cz.hlinkapp.flidea.data.repositories
 
-import Flight
 import androidx.lifecycle.LiveData
 import cz.hlinkapp.flidea.data.data_sources.room.MainDao
 import cz.hlinkapp.flidea.data.data_sources.server.ServerDataSource
+import cz.hlinkapp.flidea.model.Flight
 import cz.hlinkapp.gohlinka2_utils2.utils.RequestInfo
 import javax.inject.Inject
 

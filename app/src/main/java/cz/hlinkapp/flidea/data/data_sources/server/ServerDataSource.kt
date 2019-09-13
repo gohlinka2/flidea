@@ -1,7 +1,5 @@
 package cz.hlinkapp.flidea.data.data_sources.server
 
-import Flight.Companion.DISPLAY_DAY_TIMESTAMP_DEF_VAL
-import RootApiResponse
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import cz.hlinkapp.flidea.contracts.ServerContract.Companion.QP_ASCENDING
@@ -21,6 +19,8 @@ import cz.hlinkapp.flidea.contracts.ServerContract.Companion.QP_SORT
 import cz.hlinkapp.flidea.contracts.ServerContract.Companion.VAL_ONE_FOR_CITY
 import cz.hlinkapp.flidea.contracts.ServerContract.Companion.VAL_PARTNER
 import cz.hlinkapp.flidea.data.data_sources.room.MainDao
+import cz.hlinkapp.flidea.model.Flight.Companion.DISPLAY_DAY_TIMESTAMP_DEF_VAL
+import cz.hlinkapp.flidea.model.RootApiResponse
 import cz.hlinkapp.flidea.utils.SharedPrefHelper
 import cz.hlinkapp.flidea.utils.getStartOfDayTimestamp
 import cz.hlinkapp.gohlinka2_utils2.utils.ConnectivityChecker
