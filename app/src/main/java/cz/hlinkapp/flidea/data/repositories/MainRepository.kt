@@ -18,10 +18,11 @@ class MainRepository @Inject constructor(
     val flightsStatus: LiveData<RequestInfo> get() = mServerDataSource.flightsStatus
 
     fun getFlights(): LiveData<List<Flight>>? {
-
+        mServerDataSource.refreshFlights()
+        return mMainDao.getFlightsForDisplay()
     }
 
-    fun forceRefreshFlights(): LiveData<List<Flight>>? {
+    /*fun forceRefreshFlights(): LiveData<List<Flight>>? {
 
-    }
+    }*/
 }
