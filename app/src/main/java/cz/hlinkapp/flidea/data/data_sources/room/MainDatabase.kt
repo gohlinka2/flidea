@@ -2,13 +2,15 @@ package cz.hlinkapp.flidea.data.data_sources.room
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
+import androidx.room.TypeConverters
 import cz.hlinkapp.flidea.model.Flight
-import cz.hlinkapp.flidea.model.Route
+import cz.hlinkapp.flidea.utils.RoomTypeConverters
 
 /**
  * Main Room's [RoomDatabase].
  */
-@Database(entities = [Flight::class, Route::class], version = 0, exportSchema = false)
+@TypeConverters(RoomTypeConverters::class)
+@Database(entities = [Flight::class], version = 0, exportSchema = false)
 abstract class MainDatabase : RoomDatabase() {
     abstract fun mainDao() : MainDao
 }
