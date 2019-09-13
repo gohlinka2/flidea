@@ -14,6 +14,6 @@ For support, please feel free to contact me at https://www.linkedin.com/in/syeda
 
 data class Country (
 
-	@SerializedName("code") val code : String,
-	@SerializedName("name") val name : String
+	@SerializedName("code") var code : String,
+	@SerializedName("name") var name : String
 )

@@ -14,18 +14,18 @@ For support, please feel free to contact me at https://www.linkedin.com/in/syeda
 
 data class RootApiResponse (
 
-    @SerializedName("search_id") val search_id : String,
-    @SerializedName("data") val data: List<Flight>,
-//    @SerializedName("connections") val connections : List<String>,
-//    @SerializedName("time") val time : Int,
-    @SerializedName("currency") val currency : String,
-    @SerializedName("currency_rate") val currency_rate : Int,
-//    @SerializedName("fx_rate") val fx_rate : Int,
-//    @SerializedName("refresh") val refresh : List<String>,
-//    @SerializedName("del") val del : Double,
-//    @SerializedName("ref_tasks") val ref_tasks : List<String>,
-    @SerializedName("search_params") val search_params : SearchParams
-//    @SerializedName("all_stopover_airports") val all_stopover_airports : List<String>,
-//    @SerializedName("all_airlines") val all_airlines : List<String>,
-//    @SerializedName("_results") val _results : Int
+    @SerializedName("search_id") var search_id : String,
+    @SerializedName("data") var data: List<Flight>,
+//    @SerializedName("connections") var connections : List<String>,
+//    @SerializedName("time") var time : Int,
+    @SerializedName("currency") var currency : String,
+    @SerializedName("currency_rate") var currency_rate : Int,
+//    @SerializedName("fx_rate") var fx_rate : Int,
+//    @SerializedName("refresh") var refresh : List<String>,
+//    @SerializedName("del") var del : Double,
+//    @SerializedName("ref_tasks") var ref_tasks : List<String>,
+    @SerializedName("search_params") var search_params : SearchParams
+//    @SerializedName("all_stopover_airports") var all_stopover_airports : List<String>,
+//    @SerializedName("all_airlines") var all_airlines : List<String>,
+//    @SerializedName("_results") var _results : Int
 )

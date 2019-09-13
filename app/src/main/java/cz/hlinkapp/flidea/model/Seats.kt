@@ -14,8 +14,8 @@ For support, please feel free to contact me at https://www.linkedin.com/in/syeda
 
 data class Seats (
 
-	@SerializedName("passengers") val passengers : Int,
-	@SerializedName("adults") val adults : Int,
-	@SerializedName("children") val children : Int,
-	@SerializedName("infants") val infants : Int
+	@SerializedName("passengers") var passengers : Int,
+	@SerializedName("adults") var adults : Int,
+	@SerializedName("children") var children : Int,
+	@SerializedName("infants") var infants : Int
 )

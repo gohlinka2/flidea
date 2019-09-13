@@ -14,7 +14,7 @@ For support, please feel free to contact me at https://www.linkedin.com/in/syeda
 
 data class SearchParams (
 
-	@SerializedName("flyFrom_type") val flyFrom_type : String,
-	@SerializedName("to_type") val to_type : String,
-	@SerializedName("seats") val seats : Seats
+	@SerializedName("flyFrom_type") var flyFrom_type : String,
+	@SerializedName("to_type") var to_type : String,
+	@SerializedName("seats") var seats : Seats
 )
