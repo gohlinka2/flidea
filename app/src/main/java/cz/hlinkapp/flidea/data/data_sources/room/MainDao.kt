@@ -11,7 +11,7 @@ import androidx.room.Query
 @Dao
 interface MainDao {
 
-    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun saveFlights(flights: List<Flight>)
 
     @Query("SELECT * FROM flight ORDER BY display_day_timestamp DESC LIMIT 5")
