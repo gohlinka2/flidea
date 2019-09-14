@@ -91,7 +91,8 @@ class ServerDataSource @Inject constructor(
                                 flight.display_day_timestamp = DISPLAY_DAY_TIMESTAMP_DEF_VAL
                             }
                             mDao.saveFlights(response.body()!!.data)
-                            mDao.selectNewFlightsForDisplay(getStartOfDayTimestamp())
+                            val ids = mDao.selectFlightIdsForDisplay()
+                            mDao.markFlightsForDisplay(getStartOfDayTimestamp(),ids)
                             mSharedPrefHelper.saveLastFetchedDay()
                             status.postValue(RequestInfo.done(RequestInfo.RequestResult.OK))
                         } } else status.postValue(RequestInfo.done(RequestInfo.RequestResult.FAILED)) })
