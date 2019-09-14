@@ -6,4 +6,8 @@ import cz.hlinkapp.gohlinka2_utils2.fragments.abstraction.BaseFragment
 class FlideaFragment : BaseFragment() {
     override val layoutId: Int
         get() = R.layout.fragment_flidea
+
+    companion object {
+        const val ARG_FRAG_INDEX = "fragmentIndex"
+    }
 }
