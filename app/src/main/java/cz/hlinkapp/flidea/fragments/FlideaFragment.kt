@@ -8,8 +8,6 @@ import cz.hlinkapp.flidea.R
 import cz.hlinkapp.flidea.di.FlideaApplication
 import cz.hlinkapp.flidea.view_models.MainViewModel
 import cz.hlinkapp.gohlinka2_utils2.fragments.abstraction.BaseFragment
-import cz.hlinkapp.gohlinka2_utils2.utils.RequestInfo
-import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_flidea.*
 import javax.inject.Inject
 
@@ -41,21 +39,6 @@ class FlideaFragment : BaseFragment() {
 
     override fun initViews(savedInstanceState: Bundle?) {
         super.initViews(savedInstanceState)
-
-        viewModel.flightsStatus.observe(viewLifecycleOwner, Observer {requestInfo ->
-            if (requestInfo.isProcessing()) status.text = "Downloading"
-            else requestInfo.requestResult.getContentIfNotHandled().let {
-                when (it) {
-                    RequestInfo.RequestResult.OK -> {
-                        status.text = "OK"
-                        viewPager.currentItem = 0
-                    }
-                    RequestInfo.RequestResult.FAILED -> status.text = "Failed"
-                    RequestInfo.RequestResult.NO_INTERNET -> status.text = "No internet"
-                    else -> status.text = "Idle"
-                }
-            }
-        })
 
         viewModel.flights?.observe(viewLifecycleOwner, Observer {
             val flight = it[mIndex]
