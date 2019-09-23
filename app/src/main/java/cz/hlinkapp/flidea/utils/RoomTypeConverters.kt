@@ -9,9 +9,10 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class RoomTypeConverters @Inject constructor(gson: Gson){
-    
-    private val mGson = gson
+class RoomTypeConverters {
+
+    @Inject
+    lateinit var mGson : Gson
 
     @TypeConverter
     fun listOfStringToJson(input : List<String>) : String {
