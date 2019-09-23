@@ -23,7 +23,7 @@ data class Flight (
 	@SerializedName("id") var id : String,
 	var display_day_timestamp : Long,
 	var fetched_timestamp: Long,
-	@SerializedName("bags_price") var bags_price : Map<String,Int>,
+	@SerializedName("bags_price") var bags_price : Map<String,Double>,
 	@SerializedName("baglimit") var baglimit : BagLimit,
 //	@SerializedName("p1") var p1 : Int,
 //	@SerializedName("p2") var p2 : Int,

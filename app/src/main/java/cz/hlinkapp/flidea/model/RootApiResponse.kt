@@ -22,7 +22,7 @@ data class RootApiResponse (
 //    @SerializedName("connections") var connections : List<String>,
 //    @SerializedName("time") var time : Int,
     @SerializedName("currency") var currency : String,
-    @SerializedName("currency_rate") var currency_rate : Int,
+    @SerializedName("currency_rate") var currency_rate : Double,
 //    @SerializedName("fx_rate") var fx_rate : Int,
 //    @SerializedName("refresh") var refresh : List<String>,
 //    @SerializedName("del") var del : Double,
