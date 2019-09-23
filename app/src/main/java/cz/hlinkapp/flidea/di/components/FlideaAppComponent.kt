@@ -4,6 +4,7 @@ import android.app.Application
 import cz.hlinkapp.flidea.activities.MainActivity
 import cz.hlinkapp.flidea.di.FlideaApplication
 import cz.hlinkapp.flidea.di.modules.*
+import cz.hlinkapp.flidea.fragments.FlideaFragment
 import dagger.Component
 import javax.inject.Singleton
 
@@ -18,6 +19,8 @@ interface FlideaAppComponent {
     fun inject(application: FlideaApplication)
 
     fun inject(activity: MainActivity)
+
+    fun inject(fragment: FlideaFragment)
 
     fun application() : Application
 }
