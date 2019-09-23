@@ -13,7 +13,7 @@ class MainActivity : AppCompatActivity() {
     private var backdropController: BackdropController? = null
 
     private val mAdapter = lazy {
-        MainViewPagerAdapter(supportFragmentManager, getString(R.string.app_name))
+        MainViewPagerAdapter(supportFragmentManager)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
