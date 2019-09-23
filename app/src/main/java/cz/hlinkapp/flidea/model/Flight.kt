@@ -29,6 +29,7 @@ data class Flight (
 //	@SerializedName("p2") var p2 : Int,
 //	@SerializedName("p3") var p3 : Int,
 	@SerializedName("price") var price : Double,
+	var currency: String,
 	@SerializedName("route") var route : List<Route>,
 //	@SerializedName("airlines") var airlines : List<String>,
 //	@SerializedName("pnr_count") var pnr_count : Int,
