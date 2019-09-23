@@ -31,11 +31,31 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="London"
-            android:textColor="@android:color/primary_text_light"
+            android:textColor="@color/colorTextPrimary"
             android:textSize="25sp"
             app:layout_constraintEnd_toStartOf="@+id/price"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/country"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorTextPrimary"
+            android:text="Great Britain"
+            app:layout_constraintTop_toBottomOf="@id/destination"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/price"/>
+
+        <TextView
+            android:id="@+id/airport"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="LGW London Gatwick Airport"
+            android:textColor="@color/colorTextSecondary"
+            app:layout_constraintTop_toBottomOf="@id/country"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/price"/>
 
         <TextView
             android:id="@+id/price"
@@ -43,10 +63,11 @@
             android:layout_height="wrap_content"
             android:text="1775 CZK"
             android:textColor="@color/colorAccent"
-            android:textSize="20sp"
-            app:layout_constraintBottom_toBottomOf="@id/destination"
+            android:textSize="30sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+
 
         <TextView
             android:layout_marginTop="16dp"
