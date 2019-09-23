@@ -68,5 +68,13 @@ class FlideaFragment : BaseFragment() {
     companion object {
         const val ARG_FRAG_INDEX = "fragmentIndex"
         const val TAG = "FlideaFragment"
+
+        fun createInstance(fragIndex: Int) : FlideaFragment {
+            val frag = FlideaFragment()
+            val bundle = Bundle()
+            bundle.putInt(ARG_FRAG_INDEX,fragIndex)
+            frag.arguments = bundle
+            return frag
+        }
     }
 }
