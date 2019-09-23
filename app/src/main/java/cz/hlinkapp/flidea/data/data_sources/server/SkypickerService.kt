@@ -9,5 +9,5 @@ import retrofit2.http.QueryMap
 interface SkypickerService {
 
     @GET(ServerContract.FLIGHTS)
-    fun getFlights(@QueryMap params: Map<String,Any>) : Call<RootApiResponse>
+    fun getFlights(@QueryMap params: @JvmSuppressWildcards Map<String,Any>) : Call<RootApiResponse>
 }
