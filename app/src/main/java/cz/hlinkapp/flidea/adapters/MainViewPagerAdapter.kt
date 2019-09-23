@@ -9,14 +9,10 @@ import cz.hlinkapp.flidea.fragments.FlideaFragment
 /**
  * A [androidx.viewpager.widget.ViewPager] adapter for the main screen. Contains a fixed number of 5 [FlideaFragment] fragment.
  */
-class MainViewPagerAdapter (fm: FragmentManager, private val titles: List<String>): FragmentStatePagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
-
-    init {
-        require(titles.size == count) { "Provide correct amount of titles." }
-    }
+class MainViewPagerAdapter (fm: FragmentManager, private val appName: String): FragmentStatePagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
 
     override fun getPageTitle(position: Int): CharSequence? {
-        return titles[position]
+        return appName
     }
 
     override fun getItem(position: Int): Fragment = when (position) {
