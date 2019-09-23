@@ -24,7 +24,7 @@ class MainActivity : AppCompatActivity() {
         initViews()
     }
 
-    fun initViews() {
+    private fun initViews() {
         setSupportActionBar(toolbar)
         toolbar.title = getString(R.string.app_name)
         val tl = toolbar
