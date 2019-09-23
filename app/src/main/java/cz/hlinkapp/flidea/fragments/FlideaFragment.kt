@@ -28,8 +28,8 @@ class FlideaFragment : BaseFragment() {
         super.initDependencies(savedInstanceState)
 
         val fromSavedInstanceState = savedInstanceState?.getInt(ARG_FRAG_INDEX,-1) ?: -1
-        val fromExtras = activity?.intent?.getIntExtra(ARG_FRAG_INDEX,-1) ?: -1
-        mIndex = if (fromExtras != -1) fromExtras else if (fromSavedInstanceState != 1) fromSavedInstanceState else throw IllegalArgumentException("No index provided with ARG_FRAG_INDEX!")
+        val fromExtras = arguments?.getInt(ARG_FRAG_INDEX,-1) ?: -1
+        mIndex = if (fromExtras != -1) fromExtras else if (fromSavedInstanceState != -1) fromSavedInstanceState else throw IllegalArgumentException("No index provided with ARG_FRAG_INDEX!")
 
         (activity?.applicationContext as? FlideaApplication)?.getApplicationComponent()?.inject(this)
 
