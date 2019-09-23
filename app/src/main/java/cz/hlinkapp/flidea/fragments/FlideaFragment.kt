@@ -41,10 +41,14 @@ class FlideaFragment : BaseFragment() {
         super.initViews(savedInstanceState)
 
         viewModel.flights?.observe(viewLifecycleOwner, Observer {
-            val flight = it[mIndex]
-            destination.text = flight.cityTo
-            price.text = "${flight.price} ${flight.currency}"
-            dump.text = mGson.toJson(flight).toString()
+            if (it.isNotEmpty()) {
+                val flight = it[mIndex]
+                destination.text = flight.cityTo
+                price.text = "${flight.price} ${flight.currency}"
+                dump.text = mGson.toJson(flight).toString()
+            } else {
+                //todo: show empty space layout
+            }
         })
     }
 
