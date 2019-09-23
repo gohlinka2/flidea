@@ -87,6 +87,7 @@ class ServerDataSource @Inject constructor(
                     if (response.isSuccessful && response.body() != null && response.body()!!.data.isNotEmpty()) {
                         mExecutor.execute {
                             for (flight in response.body()!!.data) {
+                                flight.currency = response.body()!!.currency
                                 flight.fetched_timestamp = Calendar.getInstance().timeInMillis
                                 flight.display_day_timestamp = DISPLAY_DAY_TIMESTAMP_DEF_VAL
                             }
