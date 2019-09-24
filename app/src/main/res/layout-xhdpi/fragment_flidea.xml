@@ -1,82 +1,126 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ImageView
-        android:id="@+id/destinationImage"
-        android:src="@drawable/london_gb"
-        android:layout_width="0dp"
-        android:adjustViewBounds="true"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/contentLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/destinationImage"
+                android:src="@drawable/london_gb"
+                android:layout_width="0dp"
+                android:adjustViewBounds="true"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/content"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/destinationImage">
+
+                <TextView
+                    android:id="@+id/destination"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="London"
+                    android:textColor="@color/colorTextPrimary"
+                    android:textSize="25sp"
+                    app:layout_constraintEnd_toStartOf="@+id/price"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/country"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorTextPrimary"
+                    android:text="Great Britain"
+                    app:layout_constraintTop_toBottomOf="@id/destination"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/price"/>
+
+                <TextView
+                    android:id="@+id/airport"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="LGW"
+                    android:textColor="@color/colorTextSecondary"
+                    app:layout_constraintTop_toBottomOf="@id/country"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/price"/>
+
+                <TextView
+                    android:id="@+id/price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="1775 CZK"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="30sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:layout_marginTop="16dp"
+                    android:id="@+id/dump"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/airport" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/content"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:paddingStart="16dp"
-        android:paddingEnd="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/destinationImage">
+        android:layout_centerInParent="true"
+        android:visibility="gone"
+        android:id="@+id/emptySpaceLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
 
-        <TextView
-            android:id="@+id/destination"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="London"
-            android:textColor="@color/colorTextPrimary"
-            android:textSize="25sp"
-            app:layout_constraintEnd_toStartOf="@+id/price"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/country"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:textColor="@color/colorTextPrimary"
-            android:text="Great Britain"
-            app:layout_constraintTop_toBottomOf="@id/destination"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/price"/>
-
-        <TextView
-            android:id="@+id/airport"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="LGW London Gatwick Airport"
-            android:textColor="@color/colorTextSecondary"
-            app:layout_constraintTop_toBottomOf="@id/country"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/price"/>
-
-        <TextView
-            android:id="@+id/price"
+        <ImageView
+            android:id="@+id/emptySpaceIcon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="1775 CZK"
-            android:textColor="@color/colorAccent"
-            android:textSize="30sp"
+            android:src="@drawable/ic_sentiment_dissatisfied_large"
+            android:tint="@color/colorTextSecondary"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:layout_marginTop="16dp"
-            android:id="@+id/dump"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/destination" />
-
+            android:layout_marginTop="8dp"
+            android:text="@string/flight_ideas_are_not_downloaded_yet_click_to_try_again"
+            android:textAlignment="center"
+            app:layout_constraintEnd_toEndOf="@+id/emptySpaceIcon"
+            app:layout_constraintStart_toStartOf="@+id/emptySpaceIcon"
+            app:layout_constraintTop_toBottomOf="@+id/emptySpaceIcon" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>
