@@ -8,15 +8,14 @@ import androidx.lifecycle.ViewModelProvider
 import cz.hlinkapp.flidea.R
 import cz.hlinkapp.flidea.di.FlideaApplication
 import cz.hlinkapp.flidea.fragments.FlideaFragment
+import cz.hlinkapp.flidea.utils.findBehavior
 import cz.hlinkapp.flidea.view_models.MainViewModel
 import cz.hlinkapp.gohlinka2_utils2.utils.RequestInfo
-import io.github.rokarpov.backdrop.BackdropController
 import kotlinx.android.synthetic.main.activity_main.*
+import ru.semper_viventem.backdrop.BackdropBehavior
 import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
-
-    private var backdropController: BackdropController? = null
 
     /*private val mAdapter = lazy {
         MainViewPagerAdapter(supportFragmentManager)
@@ -42,12 +41,19 @@ class MainActivity : AppCompatActivity() {
         toolbar.title = getString(R.string.app_name)
         val tl = toolbar
 
-        val backLayer = backdropBackLayer
-        backdropController = BackdropController.build(backLayer, applicationContext) {
-            supportToolbar = tl
-            concealedTitleId = R.string.app_name
-            concealedNavigationIconId = R.drawable.ic_menu
-            revealedNavigationIconId = R.drawable.ic_close
+        val backdropBehavior: BackdropBehavior = foregroundContainer.findBehavior() // find behavior
+
+        with(backdropBehavior) {
+            attachBackLayout(R.id.backLayout)
+
+            setClosedIcon(R.drawable.ic_menu)
+            setOpenedIcon(R.drawable.ic_close)
+
+            addOnDropListener(object : BackdropBehavior.OnDropListener {
+                override fun onDrop(dropState: BackdropBehavior.DropState, fromUser: Boolean) {
+                    // TODO: handle listener
+                }
+            })
         }
 
         viewModel.flightsStatus.observe(this, Observer {requestInfo ->
