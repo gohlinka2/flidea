@@ -1,91 +1,102 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/coordinatorLayout"
-    android:background="@color/colorPrimary"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary">
 
-    <io.github.rokarpov.backdrop.BackdropBackLayer
-        tools:context=".activities.MainActivity"
-        android:id="@+id/backdropBackLayer"
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/backLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:elevation="0dp">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-            app:layout_childType="header"/>
+            android:layout_height="wrap_content"
+            app:titleTextColor="@color/colorWhite"/>
 
-        <!--<io.github.rokarpov.backdrop.demo.SearchBackView
-            android:id="@+id/main__search_view"
+        <RelativeLayout
+            android:elevation="0dp"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:layout_childType="content"
-            app:layout_hideHeaderOnReveal="true"
-            app:layout_minRevealedFrontViewHeight="@dimen/subheader_height"/>-->
-    </io.github.rokarpov.backdrop.BackdropBackLayer>
+            android:layout_height="100dp">
 
-    <io.github.rokarpov.backdrop.BackdropFrontLayer
-        android:id="@+id/backdropFrontLayer"
-        android:background="@drawable/bg_backdrop_front_layer"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_behavior="@string/backdrop_front_layer_behavior">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:paddingStart="16dp"
-            android:paddingEnd="16dp"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/subheader_height"
-            app:layout_childType="header">
-
-            <TextView
-                android:id="@+id/headerTitleText"
+            <com.google.android.material.button.MaterialButton
+                android:backgroundTint="@color/colorAccent"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:layout_marginStart="8dp"
-                android:text="@string/app_name"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:text="Test button"
+                android:layout_centerInParent="true"/>
 
-            <TextView
-                app:layout_constraintTop_toBottomOf="@id/headerTitleText"
+        </RelativeLayout>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:cardCornerRadius="15dp"
+        app:cardBackgroundColor="@color/colorWhite"
+        app:cardElevation="4dp"
+        android:clickable="true"
+        android:elevation="4dp"
+        android:focusable="true"
+        android:id="@+id/foregroundContainer"
+        app:layout_behavior="ru.semper_viventem.backdrop.BackdropBehavior">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <FrameLayout
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                android:layout_marginStart="8dp"
-                android:id="@+id/status"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:id="@+id/fragmentContainer"
+                android:layout_width="0dp"
+                android:layout_height="0dp" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/headerLayout"
+                android:background="@drawable/gradient_vertical_black_to_transparent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:padding="8dp">
+
+                <TextView
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/headerTitle"
+                    android:text="Today's Flideas"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="17sp"/>
+
+                <TextView
+                    android:textColor="@color/colorWhite"
+                    android:text="Downloading"
+                    android:fontFamily="sans-serif-light"
+                    android:id="@+id/status"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/headerTitle"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <FrameLayout
-            android:id="@+id/fragmentContainer"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
 
-        <!--<androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:layout_childType="content">
+    </androidx.cardview.widget.CardView>
 
-            <androidx.viewpager.widget.ViewPager
-                android:id="@+id/viewPager"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>-->
-
-    </io.github.rokarpov.backdrop.BackdropFrontLayer>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
