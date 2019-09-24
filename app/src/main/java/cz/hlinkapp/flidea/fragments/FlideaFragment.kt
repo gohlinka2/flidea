@@ -3,11 +3,16 @@ package cz.hlinkapp.flidea.fragments
 import android.os.Bundle
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.bitmap.DownsampleStrategy
 import com.google.gson.Gson
 import cz.hlinkapp.flidea.R
+import cz.hlinkapp.flidea.contracts.ServerContract
 import cz.hlinkapp.flidea.di.FlideaApplication
 import cz.hlinkapp.flidea.view_models.MainViewModel
 import cz.hlinkapp.gohlinka2_utils2.fragments.abstraction.BaseFragment
+import cz.hlinkapp.gohlinka2_utils2.utils.setGone
+import cz.hlinkapp.gohlinka2_utils2.utils.setVisible
 import kotlinx.android.synthetic.main.fragment_flidea.*
 import javax.inject.Inject
 
@@ -40,14 +45,27 @@ class FlideaFragment : BaseFragment() {
     override fun initViews(savedInstanceState: Bundle?) {
         super.initViews(savedInstanceState)
 
+        emptySpaceLayout.setOnClickListener {
+            //TODO: force refresh data
+        }
+
         viewModel.flights?.observe(viewLifecycleOwner, Observer {
             if (it.isNotEmpty()) {
+                contentLayout.setVisible()
+                emptySpaceLayout.setGone()
                 val flight = it[mIndex]
                 destination.text = flight.cityTo
+                country.text = flight.countryTo.name
+                airport.text = flight.flyTo
                 price.text = "${flight.price} ${flight.currency}"
+                Glide.with(destinationImage)
+                    .load(ServerContract.createImageUrl(flight.mapIdto))
+                    .downsample(DownsampleStrategy.FIT_CENTER)
+                    .into(destinationImage)
                 dump.text = mGson.toJson(flight).toString()
             } else {
-                //todo: show empty space layout
+                contentLayout.setGone()
+                emptySpaceLayout.setVisible()
             }
         })
     }
