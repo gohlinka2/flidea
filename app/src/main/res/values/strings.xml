@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Flidea</string>
+    <string name="flight_ideas_are_not_downloaded_yet_click_to_try_again">Flight ideas are not downloaded - yet!\nClick to try again.</string>
 </resources>
