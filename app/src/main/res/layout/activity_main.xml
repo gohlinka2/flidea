@@ -19,6 +19,7 @@
             app:titleTextColor="@color/colorWhite"/>
 
         <RelativeLayout
+            android:layout_marginBottom="5dp"
             android:elevation="0dp"
             android:layout_width="match_parent"
             android:layout_height="100dp">
@@ -37,8 +38,6 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:cardCornerRadius="15dp"
-        app:cardBackgroundColor="@color/colorWhite"
         app:cardElevation="4dp"
         android:clickable="true"
         android:elevation="4dp"
@@ -60,9 +59,10 @@
                 android:layout_height="0dp" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/headerLayout"
-                android:background="@drawable/gradient_vertical_black_to_transparent"
-                app:layout_constraintTop_toTopOf="parent"
+                android:id="@+id/footerLayout"
+                android:elevation="8dp"
+                android:background="@color/colorWhite"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 android:layout_width="0dp"
@@ -75,21 +75,20 @@
                     app:layout_constraintStart_toStartOf="parent"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:id="@+id/headerTitle"
-                    android:text="Today's Flideas"
-                    android:textColor="@color/colorWhite"
-                    android:textSize="17sp"/>
+                    android:id="@+id/footerTitle"
+                    android:text="@string/todays_flight_ideas_havent_been_downloaded_yet_showing_flideas_for"
+                    android:textColor="@color/colorTextPrimary" />
 
                 <TextView
-                    android:textColor="@color/colorWhite"
-                    android:text="Downloading"
+                    android:textColor="@color/colorTextSecondary"
+                    android:text="@string/downloading"
                     android:fontFamily="sans-serif-light"
                     android:id="@+id/status"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/headerTitle"/>
+                    app:layout_constraintTop_toBottomOf="@id/footerTitle"/>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
