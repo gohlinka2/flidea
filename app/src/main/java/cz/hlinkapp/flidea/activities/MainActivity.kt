@@ -9,6 +9,7 @@ import cz.hlinkapp.flidea.R
 import cz.hlinkapp.flidea.di.FlideaApplication
 import cz.hlinkapp.flidea.fragments.FlideaFragment
 import cz.hlinkapp.flidea.utils.findBehavior
+import cz.hlinkapp.flidea.utils.format
 import cz.hlinkapp.flidea.utils.getStartOfDayTimestamp
 import cz.hlinkapp.flidea.view_models.MainViewModel
 import cz.hlinkapp.gohlinka2_utils2.utils.RequestInfo
@@ -69,7 +70,7 @@ class MainActivity : AppCompatActivity() {
                     footerLayout.setVisible()
                     val cal = Calendar.getInstance()
                     cal.timeInMillis = timestamp
-                    footerTitle.text = getString(R.string.todays_flight_ideas_havent_been_downloaded_yet_showing_flideas_for,"${cal.get(Calendar.DAY_OF_MONTH)}/${cal.get(Calendar.MONTH) + 1}")
+                    footerTitle.text = getString(R.string.todays_flight_ideas_havent_been_downloaded_yet_showing_flideas_for,"${cal.get(Calendar.DAY_OF_MONTH).format(2)}/${(cal.get(Calendar.MONTH) + 1).format(2)}")
                 }
             } else {
                 footerLayout.setVisible()
