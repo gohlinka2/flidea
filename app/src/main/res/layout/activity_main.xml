@@ -35,10 +35,12 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <androidx.cardview.widget.CardView
+    <cz.hlinkapp.flidea.views.RoundedView
+        android:background="@drawable/bg_backdrop_front_layer"
+        app:topLeftCornerRadius="15dp"
+        app:topRightCornerRadius="15dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:cardElevation="4dp"
         android:clickable="true"
         android:elevation="4dp"
         android:focusable="true"
@@ -95,7 +97,7 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-    </androidx.cardview.widget.CardView>
+    </cz.hlinkapp.flidea.views.RoundedView>
 
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
