@@ -5,7 +5,6 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.DownsampleStrategy
-import com.google.gson.Gson
 import cz.hlinkapp.flidea.R
 import cz.hlinkapp.flidea.contracts.ServerContract
 import cz.hlinkapp.flidea.di.FlideaApplication
@@ -25,9 +24,6 @@ class FlideaFragment : BaseFragment() {
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
-
-    @Inject
-    lateinit var mGson : Gson //TODO: remove, just for testing
 
     override fun initDependencies(savedInstanceState: Bundle?) {
         super.initDependencies(savedInstanceState)
@@ -57,12 +53,12 @@ class FlideaFragment : BaseFragment() {
                 destination.text = flight.cityTo
                 country.text = flight.countryTo.name
                 airport.text = flight.flyTo
-                price.text = "${flight.price} ${flight.currency}"
+                price.text = flight.price.toString()
+                currency.text = flight.currency
                 Glide.with(destinationImage)
                     .load(ServerContract.createImageUrl(flight.mapIdto))
                     .downsample(DownsampleStrategy.FIT_CENTER)
                     .into(destinationImage)
-                dump.text = mGson.toJson(flight).toString()
             } else {
                 contentLayout.setGone()
                 emptySpaceLayout.setVisible()
