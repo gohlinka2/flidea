@@ -26,3 +26,5 @@ fun <T : CoordinatorLayout.Behavior<*>> View.findBehavior(): T = layoutParams.ru
     (layoutParams as CoordinatorLayout.LayoutParams).behavior as? T
         ?: throw IllegalArgumentException("Layout's behavior is not current behavior")
 }
+
+fun Int.format(digits: Int) = java.lang.String.format("%.${digits}d", this)
