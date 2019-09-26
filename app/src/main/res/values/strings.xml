@@ -1,4 +1,12 @@
 <resources>
     <string name="app_name">Flidea</string>
     <string name="flight_ideas_are_not_downloaded_yet_click_to_try_again">Flight ideas are not downloaded - yet!\nClick to try again.</string>
+    <string name="today_s_flideas">Today\'s Flideas</string>
+    <string name="downloading">Downloading</string>
+    <string name="download_ok">Download OK</string>
+    <string name="download_failed">Download failed</string>
+    <string name="no_internet">No internet</string>
+    <string name="todays_flight_ideas_havent_been_downloaded_yet_showing_flideas_for">Today\'s Flideas haven\'t been downloaded yet. Showing data for %1$s</string>
+    <string name="data_not_saved">Data not saved</string>
+    <string name="idle">Idle</string>
 </resources>
