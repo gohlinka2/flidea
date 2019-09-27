@@ -8,6 +8,10 @@ import cz.hlinkapp.flidea.di.modules.RetrofitModule
 import cz.hlinkapp.flidea.di.modules.RoomModule
 import cz.hlinkapp.flidea.di.modules.UtilsModule
 
+/**
+ * A custom [Application] class for this app.
+ * Needed mainly for DI.
+ */
 class FlideaApplication : Application() {
 
     private lateinit var flideaAppComponent : FlideaAppComponent
@@ -15,6 +19,7 @@ class FlideaApplication : Application() {
     override fun onCreate() {
         super.onCreate()
 
+        // Init the app component
         flideaAppComponent = DaggerFlideaAppComponent
             .builder()
             .roomModule(RoomModule(this))
