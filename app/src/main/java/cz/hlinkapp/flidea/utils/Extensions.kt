@@ -2,6 +2,8 @@ package cz.hlinkapp.flidea.utils
 
 import android.view.View
 import androidx.coordinatorlayout.widget.CoordinatorLayout
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 import java.util.*
 
 fun Calendar.resetToStartOfDay() {
@@ -27,4 +29,6 @@ fun <T : CoordinatorLayout.Behavior<*>> View.findBehavior(): T = layoutParams.ru
         ?: throw IllegalArgumentException("Layout's behavior is not current behavior")
 }
 
-fun Int.format(digits: Int) = java.lang.String.format("%.${digits}d", this)
+fun Int.format(digits: Int) = java.lang.String.format("%0${digits}d", this)
+
+inline fun <reified T> Gson.fromJson(json: String) = this.fromJson<T>(json, object: TypeToken<T>() {}.type)
