@@ -2,12 +2,11 @@ package cz.hlinkapp.flidea.activities
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.commit
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import cz.hlinkapp.flidea.R
+import cz.hlinkapp.flidea.adapters.MainViewPagerAdapter
 import cz.hlinkapp.flidea.di.FlideaApplication
-import cz.hlinkapp.flidea.fragments.FlideaFragment
 import cz.hlinkapp.flidea.utils.findBehavior
 import cz.hlinkapp.flidea.utils.format
 import cz.hlinkapp.flidea.utils.getStartOfDayTimestamp
@@ -22,9 +21,9 @@ import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
 
-    /*private val mAdapter = lazy {
+    private val mAdapter = lazy {
         MainViewPagerAdapter(supportFragmentManager)
-    }*/
+    }
 
     private lateinit var viewModel : MainViewModel
 
@@ -104,11 +103,7 @@ class MainActivity : AppCompatActivity() {
             }
         })
 
-//        viewPager.adapter = mAdapter.value
-
-        supportFragmentManager.commit {
-            replace(fragmentContainer.id,FlideaFragment.createInstance(0))
-        }
+        viewPager.adapter = mAdapter.value
 
     }
 }
