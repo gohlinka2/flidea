@@ -59,9 +59,7 @@ class FlideaFragment : BaseFragment() {
         routeRecycler.setLayoutManagerSafely(LinearLayoutManager(context))
         routeRecycler.adapter = mRouteRecyclerAdapter
 
-        emptySpaceLayout.setOnClickListener {
-            //TODO: force refresh data
-        }
+        emptySpaceLayout.setOnClickListener { viewModel.retryRefreshingFlights() }
 
         //Observe the flights and display the flight idea
         viewModel.flights?.observe(viewLifecycleOwner, Observer {
