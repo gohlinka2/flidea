@@ -8,6 +8,9 @@ import cz.hlinkapp.flidea.model.Country
 import cz.hlinkapp.flidea.model.Route
 import javax.inject.Singleton
 
+/**
+ * A class with several [Room] [TypeConverter]s.
+ */
 @Singleton
 class RoomTypeConverters {
 
