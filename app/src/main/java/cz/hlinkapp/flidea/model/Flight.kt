@@ -1,6 +1,7 @@
 package cz.hlinkapp.flidea.model
 
 
+import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
@@ -28,6 +29,7 @@ data class Flight (
 	var display_day_timestamp : Long,
 	var fetched_timestamp: Long,
 	@SerializedName("bags_price") var bags_price : Map<String,Double>,
+	@Embedded
 	@SerializedName("baglimit") var baglimit : BagLimit,
 //	@SerializedName("p1") var p1 : Int,
 //	@SerializedName("p2") var p2 : Int,
