@@ -55,7 +55,7 @@ class ServerDataSource @Inject constructor(
     private val mFlightsStatus = MutableLiveData<RequestInfo>(RequestInfo.notStarted())
 
     /**
-     * Status of the flights download task.
+     * An observable status of the flights download task.
      */
     val flightsStatus: LiveData<RequestInfo> get() = mFlightsStatus
 
