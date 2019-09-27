@@ -28,7 +28,7 @@ class RoomTypeConverters {
 
     @TypeConverter
     fun listOfRouteFromJson(input : String) : List<Route> {
-        return mGson.fromJson(input,List::class.java) as List<Route>
+        return mGson.fromJson<List<Route>>(input)
     }
 
     @TypeConverter
