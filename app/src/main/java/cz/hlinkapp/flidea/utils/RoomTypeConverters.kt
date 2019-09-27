@@ -15,16 +15,6 @@ import javax.inject.Singleton
 class RoomTypeConverters {
 
     @TypeConverter
-    fun listOfStringToJson(input : List<String>) : String {
-        return mGson.toJson(input)
-    }
-
-    @TypeConverter
-    fun listOfStringFromJson(input : String) : List<String> {
-        return mGson.fromJson(input,List::class.java) as List<String>
-    }
-
-    @TypeConverter
     fun listOfRouteToJson(input : List<Route>) : String {
         return mGson.toJson(input)
     }
@@ -35,13 +25,23 @@ class RoomTypeConverters {
     }
 
     @TypeConverter
+    fun listOfStringToJson(input : List<String>) : String {
+        return mGson.toJson(input)
+    }
+
+    @TypeConverter
+    fun listOfStringFromJson(input : String) : List<String> {
+        return mGson.fromJson<List<String>>(input)
+    }
+
+    @TypeConverter
     fun mapOfStringToDoubleToJson(input : Map<String,Double>) : String {
         return mGson.toJson(input)
     }
 
     @TypeConverter
     fun mapOfStringToDoubleFromJson(input : String) : Map<String,Double>? {
-        return mGson.fromJson(input,Map::class.java) as? Map<String, Double>
+        return mGson.fromJson<Map<String, Double>>(input)
     }
 
     @TypeConverter
@@ -51,7 +51,7 @@ class RoomTypeConverters {
 
     @TypeConverter
     fun mapOfStringToIntegerFromJson(input : String) : Map<String, Int>? {
-        return mGson.fromJson(input,Map::class.java) as? Map<String, Int>
+        return mGson.fromJson<Map<String, Int>>(input)
     }
 
     @TypeConverter
@@ -61,7 +61,7 @@ class RoomTypeConverters {
 
     @TypeConverter
     fun bagLimitFromJson(input : String) : BagLimit {
-        return mGson.fromJson(input,BagLimit::class.java)
+        return mGson.fromJson<BagLimit>(input)
     }
 
     @TypeConverter
@@ -71,7 +71,7 @@ class RoomTypeConverters {
 
     @TypeConverter
     fun countryFromJson(input : String) : Country {
-        return mGson.fromJson(input,Country::class.java)
+        return mGson.fromJson<Country>(input)
     }
 
     companion object {
