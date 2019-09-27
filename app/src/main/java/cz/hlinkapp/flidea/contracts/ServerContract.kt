@@ -1,8 +1,13 @@
 package cz.hlinkapp.flidea.contracts
 
+/**
+ * An interface containing several constants and utility functions for communicating with the server.
+ */
 interface ServerContract {
 
     companion object {
+
+        //Base
         const val PROTOCOL = "https://"
         const val BASE_URL = "${PROTOCOL}api.skypicker.com/"
         const val FLIGHTS = "flights"
@@ -11,6 +16,7 @@ interface ServerContract {
         const val IMAGE_FILE_FORMAT_LOCATIONS = ".jpg"
         const val IMAGE_FILE_FORMAT_AIRLINE_LOGOS = ".png"
 
+        //Image URL functions
         fun createAirlineLogoImageUrl(code: String) = "$IMAGES_AIRLINE_LOGOS_URL$code$IMAGE_FILE_FORMAT_AIRLINE_LOGOS"
         fun createLocationImageUrl(mapId: String) = "$IMAGES_LOCATIONS_URL$mapId$IMAGE_FILE_FORMAT_LOCATIONS"
 
