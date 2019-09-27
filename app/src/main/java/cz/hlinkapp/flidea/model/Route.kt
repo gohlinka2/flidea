@@ -14,6 +14,14 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 For support, please feel free to contact me at https://www.linkedin.com/in/syedabsar */
 
+/**
+ * A model class representing a single flight part in a [Flight]/Flidea.
+ * Eg. If the flight has one stopover, the [Flight] model would contain 4 instances of [Route]:
+ * 0: Start airport -> stopover airport
+ * 1: Stopover airport -> destination airport
+ * 2: Dest. A. -> Stopover A.
+ * 3: Stopover A. -> Start A.
+ */
 data class Route (
 
 	@PrimaryKey
