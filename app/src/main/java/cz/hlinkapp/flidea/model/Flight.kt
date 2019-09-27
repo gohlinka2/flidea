@@ -17,6 +17,10 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 For support, please feel free to contact me at https://www.linkedin.com/in/syedabsar */
 
 
+/**
+ * A model class representing a flight/Flidea(flight idea).
+ * Also the main Room entity.
+ */
 @Entity
 data class Flight (
 	@PrimaryKey
@@ -65,6 +69,10 @@ data class Flight (
 	@SerializedName("deep_link") var deep_link : String
 ) {
 	companion object {
+		/**
+		 * Default value for the display day timestamp.
+		 * The timestamp should be set to this value in all newly downloaded and undisplayed flights, before marking them for display.
+		 */
 		const val DISPLAY_DAY_TIMESTAMP_DEF_VAL = Long.MIN_VALUE
 	}
 }
