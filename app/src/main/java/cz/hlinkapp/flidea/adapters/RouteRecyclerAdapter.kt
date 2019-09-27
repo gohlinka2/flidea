@@ -15,10 +15,14 @@ import java.util.*
 import kotlin.collections.ArrayList
 
 /**
- * A [RecyclerView] adapter for displaying single flights.
+ * A [RecyclerView] adapter for displaying single flights of a journey.
  */
 class RouteRecyclerAdapter : RecyclerView.Adapter<RouteRecyclerAdapter.ViewHolder>() {
 
+    /**
+     * The routes that should be displayed. 
+     * The view will by automatically notified of dataSet changes when this field is udpdated.
+     */
     var routes = ArrayList<Route>()
         set(value) {
             field = value
@@ -33,24 +37,27 @@ class RouteRecyclerAdapter : RecyclerView.Adapter<RouteRecyclerAdapter.ViewHolde
     override fun getItemCount(): Int = routes.size
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        with (holder) {
+        with (holder.mRoot) {
             val route = routes[position]
-            mRoot.departure_airport.text = "${route.cityFrom} ${route.flyFrom}"
-            mRoot.arrival_airport.text = "${route.cityTo} ${route.flyTo}"
+            departure_airport.text = "${route.cityFrom} ${route.flyFrom}"
+            arrival_airport.text = "${route.cityTo} ${route.flyTo}"
+
             val dCal = Calendar.getInstance().apply { timeInMillis = route.dTime * 1000}
             val aCal = Calendar.getInstance().apply { timeInMillis = route.aTime * 1000}
-            mRoot.departure_time.text = "${dCal.get(Calendar.DAY_OF_MONTH).format(2)}/${(dCal.get(Calendar.MONTH) + 1).format(2)}/${dCal.get(Calendar.YEAR)} ${dCal.get(Calendar.HOUR_OF_DAY).format(2)}:${dCal.get(Calendar.MINUTE).format(2)}"
-            mRoot.arrival_time.text = "${aCal.get(Calendar.DAY_OF_MONTH).format(2)}/${(aCal.get(Calendar.MONTH) + 1).format(2)}/${aCal.get(Calendar.YEAR)} ${aCal.get(Calendar.HOUR_OF_DAY).format(2)}:${aCal.get(Calendar.MINUTE).format(2)}"
+            departure_time.text = "${dCal.get(Calendar.DAY_OF_MONTH).format(2)}/${(dCal.get(Calendar.MONTH) + 1).format(2)}/${dCal.get(Calendar.YEAR)} ${dCal.get(Calendar.HOUR_OF_DAY).format(2)}:${dCal.get(Calendar.MINUTE).format(2)}"
+            arrival_time.text = "${aCal.get(Calendar.DAY_OF_MONTH).format(2)}/${(aCal.get(Calendar.MONTH) + 1).format(2)}/${aCal.get(Calendar.YEAR)} ${aCal.get(Calendar.HOUR_OF_DAY).format(2)}:${aCal.get(Calendar.MINUTE).format(2)}"
             val flightTime = route.aTimeUTC - route.dTimeUTC
             val flightHours = flightTime / 3600
             val flightMinutes = (flightTime / 60) % 60
-            mRoot.fly_time.text = mRoot.context.getString(R.string.fly_time,flightHours,flightMinutes)
-            Glide.with(mRoot.airline_logo)
+            fly_time.text = context.getString(R.string.fly_time,flightHours,flightMinutes)
+
+            Glide.with(airline_logo)
                 .load(ServerContract.createAirlineLogoImageUrl(route.airline))
                 .downsample(DownsampleStrategy.FIT_CENTER)
                 //TODO: add placeholder and error resources
-                .into(mRoot.airline_logo)
-            mRoot.airline.text = route.airline //TODO: for now. Replace with airline name from airlines api.
+                .into(airline_logo)
+
+            airline.text = route.airline //TODO: for now. Replace with airline name from airlines api.
         }
     }
 
