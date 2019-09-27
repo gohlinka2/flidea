@@ -15,6 +15,9 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 For support, please feel free to contact me at https://www.linkedin.com/in/syedabsar */
 
 
+/**
+ * A model class representing the params of the search query for this response.
+ */
 data class SearchParams (
 
 	@SerializedName("flyFrom_type") var flyFrom_type : String,
