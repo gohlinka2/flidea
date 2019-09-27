@@ -15,6 +15,9 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 For support, please feel free to contact me at https://www.linkedin.com/in/syedabsar */
 
 
+/**
+ * A model class representing the bag limit object, containing allowed dimensions.
+ */
 data class BagLimit (
 
 	@SerializedName("hold_width") var hold_width : Int,
