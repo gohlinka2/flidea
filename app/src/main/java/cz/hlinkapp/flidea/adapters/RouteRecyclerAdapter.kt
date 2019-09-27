@@ -17,7 +17,7 @@ import kotlin.collections.ArrayList
 /**
  * A [RecyclerView] adapter for displaying single flights.
  */
-class RouteRecyclerAdapter() : RecyclerView.Adapter<RouteRecyclerAdapter.ViewHolder>() {
+class RouteRecyclerAdapter : RecyclerView.Adapter<RouteRecyclerAdapter.ViewHolder>() {
 
     var routes = ArrayList<Route>()
         set(value) {
