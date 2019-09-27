@@ -16,11 +16,23 @@ import javax.inject.Singleton
 @Component(modules = [ApplicationModule::class,RetrofitModule::class,RoomModule::class,UtilsModule::class,ViewModelModule::class])
 interface FlideaAppComponent {
 
+    /**
+     * Inject to [FlideaApplication].
+     */
     fun inject(application: FlideaApplication)
 
+    /**
+     * Inject to [MainActivity].
+     */
     fun inject(activity: MainActivity)
 
+    /**
+     * Inject to [FlideaFragment].
+     */
     fun inject(fragment: FlideaFragment)
 
+    /**
+     * Returns this application's class.
+     */
     fun application() : Application
 }
