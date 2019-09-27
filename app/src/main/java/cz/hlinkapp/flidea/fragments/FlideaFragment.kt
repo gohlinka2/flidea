@@ -66,6 +66,7 @@ class FlideaFragment : BaseFragment() {
                 currency.text = flight.currency
                 Glide.with(destinationImage)
                     .load(ServerContract.createLocationImageUrl(flight.mapIdto))
+                        //TODO: add placeholder and error resources
                     .downsample(DownsampleStrategy.FIT_CENTER)
                     .into(destinationImage)
                 mRouteRecyclerAdapter.routes = ArrayList<Route>().apply { addAll(flight.route) }
