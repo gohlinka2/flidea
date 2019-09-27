@@ -19,6 +19,9 @@ import ru.semper_viventem.backdrop.BackdropBehavior
 import java.util.*
 import javax.inject.Inject
 
+/**
+ * The apps main activity, containing the ViewPager with the flight ideas.
+ */
 class MainActivity : AppCompatActivity() {
 
     private val mAdapter = lazy {
@@ -33,6 +36,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        //Inject and init ViewModel
         (applicationContext as? FlideaApplication)?.getApplicationComponent()?.inject(this)
         viewModel = ViewModelProvider(this, viewModelFactory).get(MainViewModel::class.java)
         viewModel.initFlights()
@@ -40,26 +44,21 @@ class MainActivity : AppCompatActivity() {
         initViews()
     }
 
+    /**
+     * Initializes the views of this activity.
+     */
     private fun initViews() {
         setSupportActionBar(toolbar)
         toolbar.title = getString(R.string.app_name)
-        val tl = toolbar
 
         val backdropBehavior: BackdropBehavior = foregroundContainer.findBehavior() // find behavior
-
         with(backdropBehavior) {
             attachBackLayout(R.id.backLayout)
-
             setClosedIcon(R.drawable.ic_menu)
             setOpenedIcon(R.drawable.ic_close)
-
-            addOnDropListener(object : BackdropBehavior.OnDropListener {
-                override fun onDrop(dropState: BackdropBehavior.DropState, fromUser: Boolean) {
-                    // TODO: handle listener
-                }
-            })
         }
 
+        //Observe flights to hide the footer or show it with the outdated data message
         viewModel.flights?.observe(this, Observer {
             if (it.isNotEmpty()) {
                 val timestamp = it[0].display_day_timestamp
@@ -77,6 +76,7 @@ class MainActivity : AppCompatActivity() {
             }
         })
 
+        //Observe status to let the user know about what is happening
         viewModel.flightsStatus.observe(this, Observer {requestInfo ->
             if (requestInfo.isProcessing()) {
                 footerLayout.setVisible()
