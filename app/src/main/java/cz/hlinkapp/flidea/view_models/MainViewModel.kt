@@ -22,7 +22,7 @@ class MainViewModel @Inject constructor(repository: MainRepository): ViewModel()
         if (mFlights == null) mFlights = mMainRepository.getFlights()
     }
 
-    /*fun forceRefreshFlights() {
-        mFlights = mMainRepository.forceRefreshFlights()
-    }*/
+    fun retryRefreshingFlights() {
+        mMainRepository.retryRefreshingFlights()
+    }
 }
