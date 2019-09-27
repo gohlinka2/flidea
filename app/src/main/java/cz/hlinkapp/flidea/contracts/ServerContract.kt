@@ -6,6 +6,13 @@ interface ServerContract {
         const val PROTOCOL = "https://"
         const val BASE_URL = "${PROTOCOL}api.skypicker.com/"
         const val FLIGHTS = "flights"
+        const val IMAGES_LOCATIONS_URL = "${PROTOCOL}images.kiwi.com/photos/600x330/"
+        const val IMAGES_AIRLINE_LOGOS_URL = "${PROTOCOL}images.kiwi.com/airlines/64x64/"
+        const val IMAGE_FILE_FORMAT_LOCATIONS = ".jpg"
+        const val IMAGE_FILE_FORMAT_AIRLINE_LOGOS = ".png"
+
+        fun createAirlineLogoImageUrl(code: String) = "$IMAGES_AIRLINE_LOGOS_URL$code$IMAGE_FILE_FORMAT_AIRLINE_LOGOS"
+        fun createLocationImageUrl(mapId: String) = "$IMAGES_LOCATIONS_URL$mapId$IMAGE_FILE_FORMAT_LOCATIONS"
 
         //Query parameters
         const val QP_FLY_FROM = "fly_from"

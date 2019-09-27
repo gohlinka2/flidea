@@ -2,17 +2,14 @@ package cz.hlinkapp.flidea.utils
 
 import androidx.room.TypeConverter
 import com.google.gson.Gson
+import com.google.gson.GsonBuilder
 import cz.hlinkapp.flidea.model.BagLimit
 import cz.hlinkapp.flidea.model.Country
 import cz.hlinkapp.flidea.model.Route
-import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
 class RoomTypeConverters {
-
-    @Inject
-    lateinit var mGson : Gson
 
     @TypeConverter
     fun listOfStringToJson(input : List<String>) : String {
@@ -31,7 +28,7 @@ class RoomTypeConverters {
 
     @TypeConverter
     fun listOfRouteFromJson(input : String) : List<Route> {
-        return mGson.fromJson(input,List::class.java) as List<Route>
+        return mGson.fromJson<List<Route>>(input)
     }
 
     @TypeConverter
@@ -72,5 +69,9 @@ class RoomTypeConverters {
     @TypeConverter
     fun countryFromJson(input : String) : Country {
         return mGson.fromJson(input,Country::class.java)
+    }
+
+    companion object {
+        var mGson : Gson = GsonBuilder().serializeNulls().create()
     }
 }

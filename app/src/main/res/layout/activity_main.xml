@@ -1,89 +1,103 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/coordinatorLayout"
-    android:background="@color/colorPrimary"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary">
 
-    <io.github.rokarpov.backdrop.BackdropBackLayer
-        tools:context=".activities.MainActivity"
-        android:id="@+id/backdropBackLayer"
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/backLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:elevation="0dp">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-            app:layout_childType="header"/>
+            android:layout_height="wrap_content"
+            app:titleTextColor="@color/colorWhite"/>
 
-        <!--<io.github.rokarpov.backdrop.demo.SearchBackView
-            android:id="@+id/main__search_view"
+        <RelativeLayout
+            android:layout_marginBottom="5dp"
+            android:elevation="0dp"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:layout_childType="content"
-            app:layout_hideHeaderOnReveal="true"
-            app:layout_minRevealedFrontViewHeight="@dimen/subheader_height"/>-->
-    </io.github.rokarpov.backdrop.BackdropBackLayer>
+            android:layout_height="100dp">
 
-    <io.github.rokarpov.backdrop.BackdropFrontLayer
-        android:id="@+id/backdropFrontLayer"
+            <com.google.android.material.button.MaterialButton
+                android:backgroundTint="@color/colorAccent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Test button"
+                android:layout_centerInParent="true"/>
+
+        </RelativeLayout>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <cz.hlinkapp.flidea.views.RoundedView
         android:background="@drawable/bg_backdrop_front_layer"
+        app:topLeftCornerRadius="15dp"
+        app:topRightCornerRadius="15dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_behavior="@string/backdrop_front_layer_behavior">
+        android:clickable="true"
+        android:elevation="4dp"
+        android:focusable="true"
+        android:id="@+id/foregroundContainer"
+        app:layout_behavior="ru.semper_viventem.backdrop.BackdropBehavior">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:paddingStart="16dp"
-                android:paddingEnd="16dp"
+            <androidx.viewpager.widget.ViewPager
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:id="@+id/viewPager"
                 android:layout_width="0dp"
-                android:layout_height="@dimen/subheader_height"
-                app:layout_childType="header"
+                android:layout_height="0dp" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/footerLayout"
+                android:elevation="8dp"
+                android:background="@color/colorWhite"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.0">
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:padding="8dp">
 
                 <TextView
-                    android:id="@+id/headerTitleText"
-                    android:layout_width="wrap_content"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:text="@string/app_name"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    android:id="@+id/footerTitle"
+                    android:text="@string/todays_flight_ideas_havent_been_downloaded_yet_showing_flideas_for"
+                    android:textColor="@color/colorTextPrimary" />
 
                 <TextView
-                    app:layout_constraintTop_toBottomOf="@id/headerTitleText"
-                    app:layout_constraintStart_toStartOf="parent"
-                    android:layout_marginStart="8dp"
+                    android:textColor="@color/colorTextSecondary"
+                    android:text="@string/downloading"
+                    android:fontFamily="sans-serif-light"
                     android:id="@+id/status"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/footerTitle"/>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <androidx.viewpager.widget.ViewPager
-                android:id="@+id/viewPager"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </io.github.rokarpov.backdrop.BackdropFrontLayer>
+
+    </cz.hlinkapp.flidea.views.RoundedView>
+
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
