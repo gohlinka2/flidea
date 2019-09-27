@@ -19,7 +19,7 @@ import cz.hlinkapp.flidea.contracts.ServerContract.Companion.QP_SORT
 import cz.hlinkapp.flidea.contracts.ServerContract.Companion.VAL_ONE_FOR_CITY
 import cz.hlinkapp.flidea.contracts.ServerContract.Companion.VAL_PARTNER
 import cz.hlinkapp.flidea.data.data_sources.room.MainDao
-import cz.hlinkapp.flidea.model.Flight.Companion.DISPLAY_DAY_TIMESTAMP_DEF_VAL
+import cz.hlinkapp.flidea.model.Flight
 import cz.hlinkapp.flidea.model.RootApiResponse
 import cz.hlinkapp.flidea.utils.SharedPrefHelper
 import cz.hlinkapp.flidea.utils.getStartOfDayTimestamp
@@ -86,17 +86,27 @@ class ServerDataSource @Inject constructor(
                 override fun onResponse(call: Call<RootApiResponse>, response: Response<RootApiResponse>) =
                     if (response.isSuccessful && response.body() != null && response.body()!!.data.isNotEmpty()) {
                         mExecutor.execute {
-                            for (flight in response.body()!!.data) {
-                                flight.currency = response.body()!!.currency
-                                flight.fetched_timestamp = Calendar.getInstance().timeInMillis
-                                flight.display_day_timestamp = DISPLAY_DAY_TIMESTAMP_DEF_VAL
-                            }
-                            mDao.saveFlights(response.body()!!.data)
-                            val ids = mDao.selectFlightIdsForDisplay()
-                            mDao.markFlightsForDisplay(getStartOfDayTimestamp(),ids)
-                            mSharedPrefHelper.saveLastFetchedDay()
+                            handleFlightSaving(response.body()!!)
                             status.postValue(RequestInfo.done(RequestInfo.RequestResult.OK))
                         } } else status.postValue(RequestInfo.done(RequestInfo.RequestResult.FAILED)) })
         } else status.postValue(RequestInfo.done(RequestInfo.RequestResult.NO_INTERNET))
+    }
+
+    /**
+     * Handles the flight saving according to [MainDao]'s usage flowchart.
+     */
+    fun handleFlightSaving(rootApiResponse: RootApiResponse) {
+        //Write control values to flights
+        for (flight in rootApiResponse.data) {
+            flight.currency = rootApiResponse.currency
+            flight.fetched_timestamp = Calendar.getInstance().timeInMillis
+            flight.display_day_timestamp = Flight.DISPLAY_DAY_TIMESTAMP_DEF_VAL
+        }
+
+        mDao.saveFlights(rootApiResponse.data)
+        val ids = mDao.selectFlightIdsForDisplay()
+        mDao.markFlightsForDisplay(getStartOfDayTimestamp(),ids)
+
+        mSharedPrefHelper.saveLastFetchedDay()
     }
 }
