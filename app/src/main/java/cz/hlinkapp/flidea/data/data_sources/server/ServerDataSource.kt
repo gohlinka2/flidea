@@ -34,6 +34,9 @@ import javax.inject.Inject
 import javax.inject.Singleton
 import kotlin.collections.HashMap
 
+/**
+ * Class for network calls. Fetches new flight data and handles its saving into the db.
+ */
 @Singleton
 class ServerDataSource @Inject constructor(
     executor: Executor,
@@ -51,6 +54,9 @@ class ServerDataSource @Inject constructor(
 
     private val mFlightsStatus = MutableLiveData<RequestInfo>(RequestInfo.notStarted())
 
+    /**
+     * Status of the flights download task.
+     */
     val flightsStatus: LiveData<RequestInfo> get() = mFlightsStatus
 
     /**
@@ -80,9 +86,7 @@ class ServerDataSource @Inject constructor(
             map[QP_ASCENDING] = 0
             map[QP_ONE_FOR_CITY] = VAL_ONE_FOR_CITY
             mSkypickerService.getFlights(map).enqueue(object : Callback<RootApiResponse> {
-                override fun onFailure(call: Call<RootApiResponse>, t: Throwable) = status.postValue(
-                    RequestInfo.done(
-                        RequestInfo.RequestResult.FAILED))
+                override fun onFailure(call: Call<RootApiResponse>, t: Throwable) = status.postValue(RequestInfo.done(RequestInfo.RequestResult.FAILED))
                 override fun onResponse(call: Call<RootApiResponse>, response: Response<RootApiResponse>) =
                     if (response.isSuccessful && response.body() != null && response.body()!!.data.isNotEmpty()) {
                         mExecutor.execute {
