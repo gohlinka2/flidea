@@ -17,8 +17,8 @@
 
     <ImageView
         android:id="@+id/airline_logo"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
         app:layout_constraintBottom_toBottomOf="@id/fly_time"
         app:layout_constraintStart_toStartOf="@id/departure_airport"
         app:layout_constraintTop_toTopOf="@+id/airline" />
