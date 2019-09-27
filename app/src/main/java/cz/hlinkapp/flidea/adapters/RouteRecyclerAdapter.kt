@@ -48,13 +48,10 @@ class RouteRecyclerAdapter : RecyclerView.Adapter<RouteRecyclerAdapter.ViewHolde
             Glide.with(mRoot.airline_logo)
                 .load(ServerContract.createAirlineLogoImageUrl(route.airline))
                 .downsample(DownsampleStrategy.FIT_CENTER)
+                //TODO: add placeholder and error resources
                 .into(mRoot.airline_logo)
             mRoot.airline.text = route.airline //TODO: for now. Replace with airline name from airlines api.
         }
-    }
-
-    fun refresh() {
-        notifyDataSetChanged()
     }
 
     inner class ViewHolder(val mRoot: View) : RecyclerView.ViewHolder(mRoot)
