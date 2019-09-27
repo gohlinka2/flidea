@@ -19,6 +19,9 @@ class MainRepository @Inject constructor(
     private val mMainDao = dao
     private val mServerDataSource = serverDataSource
 
+    /**
+     * An observable status of the flights download task.
+     */
     val flightsStatus: LiveData<RequestInfo> get() = mServerDataSource.flightsStatus
 
     /**
@@ -30,7 +33,12 @@ class MainRepository @Inject constructor(
         return mMainDao.getFlightsForDisplay()
     }
 
-    /*fun forceRefreshFlights(): LiveData<List<Flight>>? {
-
-    }*/
+    /**
+     * Reruns the refreshing process of flights.
+     * Call if the previous request has failed and the user wants to try again.
+     * Doesn't force the data to be refreshed if it has already been successfully done today.
+     */
+    fun retryRefreshingFlights() {
+        mServerDataSource.refreshFlights()
+    }
 }
