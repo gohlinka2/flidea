@@ -42,4 +42,4 @@ fun Int.format(digits: Int): String = java.lang.String.format("%0${digits}d", th
 /**
  * Converts the [json] string to [T].
  */
-inline fun <reified T> Gson.fromJson(json: String): T = this.fromJson<T>(json, object: TypeToken<T>() {}.type)
+inline fun <reified T> Gson.fromJson(json: String) = this.fromJson<T>(json, object: TypeToken<T>() {}.type)
