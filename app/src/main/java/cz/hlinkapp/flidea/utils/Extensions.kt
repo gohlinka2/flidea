@@ -6,6 +6,9 @@ import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import java.util.*
 
+/**
+ * Resets this Calendar to the first millisecond of the day set.
+ */
 fun Calendar.resetToStartOfDay() {
     set(Calendar.HOUR_OF_DAY,0)
     set(Calendar.MINUTE,0)
@@ -13,6 +16,9 @@ fun Calendar.resetToStartOfDay() {
     set(Calendar.MILLISECOND,0)
 }
 
+/**
+ * Returns a timestamp of the start of the current day.
+ */
 fun getStartOfDayTimestamp() : Long {
     val cal = Calendar.getInstance()
     cal.resetToStartOfDay()
@@ -20,6 +26,7 @@ fun getStartOfDayTimestamp() : Long {
 }
 
 /**
+ * Returns a [CoordinatorLayout] behavior of this view.
  * From https://github.com/Semper-Viventem/Material-backdrop/blob/master/README.md
  */
 fun <T : CoordinatorLayout.Behavior<*>> View.findBehavior(): T = layoutParams.run {
@@ -29,6 +36,12 @@ fun <T : CoordinatorLayout.Behavior<*>> View.findBehavior(): T = layoutParams.ru
         ?: throw IllegalArgumentException("Layout's behavior is not current behavior")
 }
 
-fun Int.format(digits: Int) = java.lang.String.format("%0${digits}d", this)
+/**
+ * Formats this integer as a String with the given number of [digits] and with a leading zero.
+ */
+fun Int.format(digits: Int): String = java.lang.String.format("%0${digits}d", this)
 
-inline fun <reified T> Gson.fromJson(json: String) = this.fromJson<T>(json, object: TypeToken<T>() {}.type)
+/**
+ * Converts the [json] string to [T].
+ */
+inline fun <reified T> Gson.fromJson(json: String): T = this.fromJson<T>(json, object: TypeToken<T>() {}.type)
