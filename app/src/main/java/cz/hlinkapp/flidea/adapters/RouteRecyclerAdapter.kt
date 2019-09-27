@@ -37,10 +37,10 @@ class RouteRecyclerAdapter() : RecyclerView.Adapter<RouteRecyclerAdapter.ViewHol
             val route = routes[position]
             mRoot.departure_airport.text = "${route.cityFrom} ${route.flyFrom}"
             mRoot.arrival_airport.text = "${route.cityTo} ${route.flyTo}"
-            val dCal = Calendar.getInstance().apply { timeInMillis = route.dTime }
-            val aCal = Calendar.getInstance().apply { timeInMillis = route.aTime }
-            mRoot.departure_time.text = "${dCal.get(Calendar.DAY_OF_MONTH).format(2)}/${(dCal.get(Calendar.MONTH) + 1).format(2)}/${dCal.get(Calendar.YEAR)} ${dCal.get(Calendar.MINUTE).format(2)}:${dCal.get(Calendar.HOUR_OF_DAY).format(2)}"
-            mRoot.arrival_time.text = "${aCal.get(Calendar.DAY_OF_MONTH).format(2)}/${(aCal.get(Calendar.MONTH) + 1).format(2)}/${aCal.get(Calendar.YEAR)} ${aCal.get(Calendar.MINUTE).format(2)}:${aCal.get(Calendar.HOUR_OF_DAY).format(2)}"
+            val dCal = Calendar.getInstance().apply { timeInMillis = route.dTime * 1000}
+            val aCal = Calendar.getInstance().apply { timeInMillis = route.aTime * 1000}
+            mRoot.departure_time.text = "${dCal.get(Calendar.DAY_OF_MONTH).format(2)}/${(dCal.get(Calendar.MONTH) + 1).format(2)}/${dCal.get(Calendar.YEAR)} ${dCal.get(Calendar.HOUR_OF_DAY).format(2)}:${dCal.get(Calendar.MINUTE).format(2)}"
+            mRoot.arrival_time.text = "${aCal.get(Calendar.DAY_OF_MONTH).format(2)}/${(aCal.get(Calendar.MONTH) + 1).format(2)}/${aCal.get(Calendar.YEAR)} ${aCal.get(Calendar.HOUR_OF_DAY).format(2)}:${aCal.get(Calendar.MINUTE).format(2)}"
             val flightTime = route.aTimeUTC - route.dTimeUTC
             val flightHours = flightTime / 3600
             val flightMinutes = (flightTime / 60) % 60
