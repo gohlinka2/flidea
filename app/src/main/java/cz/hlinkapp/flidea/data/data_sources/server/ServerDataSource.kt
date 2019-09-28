@@ -16,6 +16,7 @@ import cz.hlinkapp.flidea.contracts.ServerContract.Companion.QP_ONE_FOR_CITY
 import cz.hlinkapp.flidea.contracts.ServerContract.Companion.QP_PARTNER
 import cz.hlinkapp.flidea.contracts.ServerContract.Companion.QP_PASSENGERS
 import cz.hlinkapp.flidea.contracts.ServerContract.Companion.QP_SORT
+import cz.hlinkapp.flidea.contracts.ServerContract.Companion.VAL_FLIGHTS_TYPE
 import cz.hlinkapp.flidea.contracts.ServerContract.Companion.VAL_ONE_FOR_CITY
 import cz.hlinkapp.flidea.contracts.ServerContract.Companion.VAL_PARTNER
 import cz.hlinkapp.flidea.data.data_sources.room.MainDao
@@ -76,7 +77,7 @@ class ServerDataSource @Inject constructor(
             map[QP_DATE_TO] = "${cal.get(Calendar.DAY_OF_MONTH)}/${cal.get(Calendar.MONTH) + 1}/${cal.get(Calendar.YEAR)}"
             map[QP_NIGHTS_IN_DST_FROM] = 1
             map[QP_NIGHTS_IN_DST_TO] = 10
-            map[QP_FLIGHT_TYPE] = "round"
+            map[QP_FLIGHT_TYPE] = VAL_FLIGHTS_TYPE
             map[QP_PASSENGERS] = 1
             map[QP_PARTNER] = VAL_PARTNER
             map[QP_CURRENCY] = "CZK"
