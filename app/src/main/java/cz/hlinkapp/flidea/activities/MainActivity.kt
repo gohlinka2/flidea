@@ -7,9 +7,7 @@ import androidx.lifecycle.ViewModelProvider
 import cz.hlinkapp.flidea.R
 import cz.hlinkapp.flidea.adapters.MainViewPagerAdapter
 import cz.hlinkapp.flidea.di.FlideaApplication
-import cz.hlinkapp.flidea.utils.findBehavior
-import cz.hlinkapp.flidea.utils.format
-import cz.hlinkapp.flidea.utils.getStartOfDayTimestamp
+import cz.hlinkapp.flidea.utils.*
 import cz.hlinkapp.flidea.view_models.MainViewModel
 import cz.hlinkapp.gohlinka2_utils2.utils.OnChildScrollListener
 import cz.hlinkapp.gohlinka2_utils2.utils.RequestInfo
@@ -114,6 +112,7 @@ class MainActivity : AppCompatActivity(), OnChildScrollListener{
 
         viewPager.adapter = mAdapter.value
         tabLayout.setupWithViewPager(viewPager)
+        fab.setOnClickListener { (viewPager.getCurrentFragment(supportFragmentManager) as? OnFabClickedListener)?.onFabClicked() }
 
     }
 }
