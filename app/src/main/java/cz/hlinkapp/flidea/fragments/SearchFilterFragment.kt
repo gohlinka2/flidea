@@ -42,7 +42,7 @@ class SearchFilterFragment : BaseFragment() {
             }
         }
 
-        addButton.setOnClickListener {
+        removeButton.setOnClickListener {
             val pax = mSearchFilters.passengers
             if (pax - 1 >= 1) {
                 mSearchFilters.passengers--
