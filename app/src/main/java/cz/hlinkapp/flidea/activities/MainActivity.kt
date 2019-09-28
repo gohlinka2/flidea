@@ -71,11 +71,26 @@ class MainActivity : AppCompatActivity(), OnChildScrollListener{
         setSupportActionBar(toolbar)
         toolbar.title = getString(R.string.app_name)
 
+        frontLayerScrim.setGone()
+
         val backdropBehavior: BackdropBehavior = foregroundContainer.findBehavior() // find behavior
         with(backdropBehavior) {
             attachBackLayout(R.id.backLayout)
             setClosedIcon(R.drawable.ic_menu)
             setOpenedIcon(R.drawable.ic_close)
+            addOnDropListener(listener = object: BackdropBehavior.OnDropListener {
+                override fun onDrop(dropState: BackdropBehavior.DropState, fromUser: Boolean) {
+                    when (dropState) {
+                        BackdropBehavior.DropState.OPEN -> frontLayerScrim.setVisible()
+                        BackdropBehavior.DropState.CLOSE -> frontLayerScrim.setGone()
+                    }
+                }
+            })
+        }
+
+        frontLayerScrim.setOnClickListener {
+            backdropBehavior.close(true)
+            frontLayerScrim.setGone()
         }
 
         //Observe flights to hide the footer or show it with the outdated data message
