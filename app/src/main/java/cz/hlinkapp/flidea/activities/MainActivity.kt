@@ -1,6 +1,7 @@
 package cz.hlinkapp.flidea.activities
 
 import android.content.Intent
+import android.content.pm.ActivityInfo
 import android.net.Uri
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -52,6 +53,7 @@ class MainActivity : AppCompatActivity(), OnChildScrollListener{
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
         //Inject and init ViewModel
         (applicationContext as? FlideaApplication)?.getApplicationComponent()?.inject(this)
         viewModel = ViewModelProvider(this, viewModelFactory).get(MainViewModel::class.java)
