@@ -45,6 +45,9 @@ interface ServerContract {
         const val VAL_FLIGHTS_TYPE = "round"
         const val VAL_SORT = "quality"
 
+        const val DEFAULT_AIRPORT_CODE = "PRG"
+        const val DEFAULT_AIRPORT_NAME = "Václav Havel Airport Prague"
+
         //Choices
         val CURRENCIES = arrayOf("AED","AFN","ALL","AMD","ANG","AOA","ARS","AUD","AWG","AZN","BAM","BBD","BDT","BGN","BHD","BIF","BMD","BND","BOB","BRL","BSD","BTC","BTN","BWP","BYR","BZD","CAD","CDF","CHF","CLF","CLP","CNY","COP","CRC","CUC","CUP","CVE","CZK","DJF","DKK","DOP","DZD","EEK","EGP","ERN","ETB","EUR","FJD","FKP","GBP","GEL","GGP","GHS","GIP","GMD","GNF","GTQ","GYD","HKD","HNL","HRK","HTG","HUF","IDR","ILS","IMP","INR","IQD","IRR","ISK","JEP","JMD","JOD","JPY","KES","KGS","KHR","KMF","KPW","KRW","KWD","KYD","KZT","LAK","LBP","LKR","LRD","LSL","LTL","LVL","LYD","MAD","MDL","MGA","MKD","MMK","MNT","MOP","MRO","MTL","MUR","MVR","MWK","MXN","MYR","MZN","NAD","NGN","NIO","NOK","NPR","NZD","OMR","PAB","PEN","PGK","PHP","PKR","PLN","PYG","QAR","QUN","RON","RSD","RUB","RWF","SAR","SBD","SCR","SDG","SEK","SGD","SHP","SLL","SOS","SRD","STD","SVC","SYP","SZL","THB","TJS","TMT","TND","TOP","TRY","TTD","TWD","TZS","UAH","UGX","USD","UYU","UZS","VEF","VND","VUV","WST","XAF","XAG","XAU","XCD","XDR","XOF","XPD","XPF","XPT","YER","ZAR","ZMK","ZMW","ZWL")
         val LANGUAGES = arrayOf("ae","ag","ar","at","au","be","bg","bh","br","by","ca","ca-fr","ch","cl","cn","co","ct","cz","da","de","dk","ec","ee","el","en","es","fi","fr","gb","gr","hk","hr","hu","id","ie","il","in","is","it","ja","jo","jp","ko","kr","kw","kz","lt","mx","my","nl","no","nz","om","pe","ph","pl","pt","qa","ro","rs","ru","sa","se","sg","sk","sr","sv","th","tr","tw","ua","uk","us","vn","za")
