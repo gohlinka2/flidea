@@ -6,23 +6,21 @@
     android:background="@color/colorPrimary">
 
     <TextView
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
         android:id="@+id/departureAirportLabel"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:textColor="@color/colorWhite"
-        android:text="@string/departure_airport" />
+        android:text="@string/departure_airport"
+        style="@style/SearchFilterFragment_FilterLabel" />
 
     <TextView
+        android:id="@+id/textView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
-        android:layout_marginBottom="16dp"
         android:background="@drawable/bg_clickable_search_filter"
         android:clickable="true"
         android:elevation="3dp"
@@ -30,10 +28,15 @@
         android:padding="8dp"
         android:text="Václav Havel Airport Prague"
         android:textColor="@color/color_bg_clickable_search_filter"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/departureAirportLabel"
         app:layout_constraintStart_toStartOf="@+id/departureAirportLabel"
-        app:layout_constraintTop_toBottomOf="@id/departureAirportLabel"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@id/departureAirportLabel" />
+
+    <TextView
+        style="@style/SearchFilterFragment_FilterLabel"
+        android:text="@string/number_of_passengers"
+        app:layout_constraintEnd_toEndOf="@+id/departureAirportLabel"
+        app:layout_constraintStart_toStartOf="@+id/departureAirportLabel"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
