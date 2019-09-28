@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.swiperefreshlayout.widget.CircularProgressDrawable
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.DownsampleStrategy
 import cz.hlinkapp.flidea.R
@@ -72,9 +73,13 @@ class FlideaFragment : BaseFragment() {
                 airport.text = flight.flyTo
                 price.text = flight.price.toString()
                 currency.text = flight.currency
+
+                val placeholder = CircularProgressDrawable(context!!)
+                placeholder.start()
                 Glide.with(destinationImage)
                     .load(ServerContract.createLocationImageUrl(flight.mapIdto))
-                        //TODO: add placeholder and error resources
+                    .error(R.drawable.image_error)
+                    .placeholder(placeholder)
                     .downsample(DownsampleStrategy.FIT_CENTER)
                     .into(destinationImage)
                 mRouteRecyclerAdapter.routes = ArrayList<Route>().apply { addAll(flight.route) }

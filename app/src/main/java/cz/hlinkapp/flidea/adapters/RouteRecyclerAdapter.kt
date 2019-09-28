@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.CircularProgressDrawable
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.DownsampleStrategy
 import cz.hlinkapp.flidea.R
@@ -51,10 +52,14 @@ class RouteRecyclerAdapter : RecyclerView.Adapter<RouteRecyclerAdapter.ViewHolde
             val flightMinutes = (flightTime / 60) % 60
             fly_time.text = context.getString(R.string.fly_time,flightHours,flightMinutes)
 
+            val placeholder = CircularProgressDrawable(context)
+            placeholder.start()
+
             Glide.with(airline_logo)
                 .load(ServerContract.createAirlineLogoImageUrl(route.airline))
                 .downsample(DownsampleStrategy.FIT_CENTER)
-                //TODO: add placeholder and error resources
+                .placeholder(placeholder)
+                .error(R.drawable.ic_error)
                 .into(airline_logo)
 
             airline.text = route.airline //TODO: for now. Replace with airline name from airlines api.
