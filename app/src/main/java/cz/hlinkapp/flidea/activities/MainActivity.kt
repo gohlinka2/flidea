@@ -12,6 +12,8 @@ import cz.hlinkapp.flidea.R
 import cz.hlinkapp.flidea.adapters.MainViewPagerAdapter
 import cz.hlinkapp.flidea.di.FlideaApplication
 import cz.hlinkapp.flidea.fragments.SearchFilterFragment
+import cz.hlinkapp.flidea.model.SearchFilters
+import cz.hlinkapp.flidea.utils.SharedPrefHelper
 import cz.hlinkapp.flidea.utils.findBehavior
 import cz.hlinkapp.flidea.utils.format
 import cz.hlinkapp.flidea.utils.getStartOfDayTimestamp
@@ -49,8 +51,12 @@ class MainActivity : AppCompatActivity(), OnChildScrollListener{
         for (i in 0 .. 4) this.add(null)
     }
 
+    private var mSearchFilters : SearchFilters? = null
+
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
+    @Inject
+    lateinit var mSharedPrefHelper: SharedPrefHelper
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -71,26 +77,20 @@ class MainActivity : AppCompatActivity(), OnChildScrollListener{
         setSupportActionBar(toolbar)
         toolbar.title = getString(R.string.app_name)
 
-        frontLayerScrim.setGone()
+        initSearchFilters()
+        initBackdropViews()
+        initContentViews()
+    }
 
-        val backdropBehavior: BackdropBehavior = foregroundContainer.findBehavior() // find behavior
-        with(backdropBehavior) {
-            attachBackLayout(R.id.backLayout)
-            setClosedIcon(R.drawable.ic_menu)
-            setOpenedIcon(R.drawable.ic_close)
-            addOnDropListener(listener = object: BackdropBehavior.OnDropListener {
-                override fun onDrop(dropState: BackdropBehavior.DropState, fromUser: Boolean) {
-                    when (dropState) {
-                        BackdropBehavior.DropState.OPEN -> frontLayerScrim.setVisible()
-                        BackdropBehavior.DropState.CLOSE -> frontLayerScrim.setGone()
-                    }
-                }
-            })
-        }
-
-        frontLayerScrim.setOnClickListener {
-            backdropBehavior.close(true)
-            frontLayerScrim.setGone()
+    /**
+     * Init views related to the front layer.
+     */
+    private fun initContentViews() {
+        viewPager.adapter = mAdapter.value
+        tabLayout.setupWithViewPager(viewPager)
+        fab.setOnClickListener {
+            val deepLink = mDeepLinks[viewPager.currentItem]
+            if (deepLink != null) startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(deepLink)))
         }
 
         //Observe flights to hide the footer or show it with the outdated data message
@@ -140,16 +140,46 @@ class MainActivity : AppCompatActivity(), OnChildScrollListener{
                 }
             }
         })
+    }
 
-        viewPager.adapter = mAdapter.value
-        tabLayout.setupWithViewPager(viewPager)
-        fab.setOnClickListener {
-            val deepLink = mDeepLinks[viewPager.currentItem]
-            if (deepLink != null) startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(deepLink)))
+    /**
+     * Init view related ton the backdrop itself or its back layer.
+     */
+    private fun initBackdropViews() {
+        frontLayerScrim.setGone()
+
+        val backdropBehavior: BackdropBehavior = foregroundContainer.findBehavior() // find behavior
+        with(backdropBehavior) {
+            attachBackLayout(R.id.backLayout)
+            setClosedIcon(R.drawable.ic_menu)
+            setOpenedIcon(R.drawable.ic_close)
+            addOnDropListener(listener = object: BackdropBehavior.OnDropListener {
+                override fun onDrop(dropState: BackdropBehavior.DropState, fromUser: Boolean) {
+                    when (dropState) {
+                        BackdropBehavior.DropState.OPEN -> frontLayerScrim.setVisible()
+                        BackdropBehavior.DropState.CLOSE -> {
+                            frontLayerScrim.setGone()
+                            val newSearchFilters = mSharedPrefHelper.getSearchFilters()
+                            if(newSearchFilters != mSearchFilters) {
+                                //TODO: invalidate data
+                            }
+                        }
+                    }
+                }
+            })
+        }
+
+        frontLayerScrim.setOnClickListener {
+            backdropBehavior.close(true)
+            frontLayerScrim.setGone()
         }
 
         supportFragmentManager.commit {
-            replace(searchFilterFragmentContainer.id,SearchFilterFragment(),SearchFilterFragment.TAG)
+            replace(searchFilterFragmentContainer.id, SearchFilterFragment(), SearchFilterFragment.TAG)
         }
+    }
+
+    private fun initSearchFilters() {
+        mSearchFilters = mSharedPrefHelper.getSearchFilters()
     }
 }
