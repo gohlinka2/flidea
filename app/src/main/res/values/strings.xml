@@ -13,4 +13,5 @@
     <string name="placeholder_loading">Loading</string>
     <string name="book">Book</string>
     <string name="departure_airport">Departure airport:</string>
+    <string name="number_of_passengers">Number of passengers:</string>
 </resources>
