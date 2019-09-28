@@ -10,7 +10,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_flight_takeoff"
-        android:tint="@color/colorAccent"
+        android:tint="@color/colorDivider"
         app:layout_constraintBottom_toBottomOf="@id/departure_time"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/departure_airport" />
@@ -28,7 +28,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_flight_land"
-        android:tint="@color/colorAccent"
+        android:tint="@color/colorDivider"
         app:layout_constraintBottom_toBottomOf="@id/arrival_time"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/arrival_airport" />
