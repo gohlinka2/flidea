@@ -6,8 +6,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-<!--    TODO: change test strings for placeholders in all layouts-->
-
     <!--Focus stealer, to avoid NestedScrollingView to scroll due to dynamically created views that take the focus-->
     <View
         android:layout_width="0px"
@@ -25,6 +23,7 @@
             android:layout_height="match_parent">
 
             <ImageView
+                android:src="@drawable/image_error"
                 android:id="@+id/destinationImage"
                 android:layout_width="0dp"
                 android:adjustViewBounds="true"
@@ -48,7 +47,7 @@
                     android:id="@+id/destination"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="London"
+                    android:text="@string/placeholder_loading"
                     android:textColor="@color/colorTextPrimary"
                     android:textSize="35sp"
                     android:fontFamily="sans-serif-light"
@@ -61,7 +60,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:textColor="@color/colorTextPrimary"
-                    android:text="Great Britain"
+                    android:text="@string/placeholder_loading"
                     app:layout_constraintTop_toBottomOf="@id/destination"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toStartOf="@id/price"/>
@@ -70,7 +69,7 @@
                     android:id="@+id/airport"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="LGW"
+                    android:text="@string/placeholder_loading"
                     android:textColor="@color/colorTextSecondary"
                     app:layout_constraintTop_toBottomOf="@id/country"
                     app:layout_constraintStart_toStartOf="parent"
@@ -80,7 +79,7 @@
                     android:id="@+id/price"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="1775"
+                    android:text="@string/placeholder_loading"
                     android:textColor="@color/colorAccent"
                     android:textSize="30sp"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -90,7 +89,7 @@
                     android:id="@+id/currency"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="CZK"
+                    android:text="@string/placeholder_loading"
                     app:layout_constraintEnd_toEndOf="@+id/price"
                     app:layout_constraintTop_toBottomOf="@+id/price" />
 
