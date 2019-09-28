@@ -4,6 +4,7 @@ import android.view.View
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentPagerAdapter
 import androidx.viewpager.widget.ViewPager
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
@@ -49,8 +50,10 @@ inline fun <reified T> Gson.fromJson(json: String) = this.fromJson<T>(json, obje
 
 /**
  * Returns the fragment that is currently displayed in this ViewPager.
+ * Note that this will only work if this ViewPager's adapter is a subclass of [FragmentPagerAdapter], and it will crash otherwise.
  * @param supportFragmentManager is needed for this to work
  */
 fun ViewPager.getCurrentFragment(supportFragmentManager: FragmentManager) : Fragment? {
+    require(this.adapter is FragmentPagerAdapter)
     return supportFragmentManager.findFragmentByTag("android:switcher:${this.id}:${this.currentItem}")
 }
