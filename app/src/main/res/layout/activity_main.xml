@@ -60,6 +60,23 @@
                 android:layout_width="0dp"
                 android:layout_height="0dp" />
 
+            <RelativeLayout
+                android:background="@drawable/gradient_vertical_black_to_transparent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content">
+                <com.google.android.material.tabs.TabLayout
+                    android:background="@android:color/transparent"
+                    app:tabIndicatorHeight="0dp"
+                    app:tabGravity="center"
+                    android:id="@+id/tabLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:tabBackground="@drawable/indicator_dot_selector"/>
+            </RelativeLayout>
+
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/footerLayout"
                 android:elevation="8dp"

@@ -113,6 +113,7 @@ class MainActivity : AppCompatActivity(), OnChildScrollListener{
         })
 
         viewPager.adapter = mAdapter.value
+        tabLayout.setupWithViewPager(viewPager)
 
     }
 }
