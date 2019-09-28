@@ -5,6 +5,7 @@ import cz.hlinkapp.flidea.activities.MainActivity
 import cz.hlinkapp.flidea.di.FlideaApplication
 import cz.hlinkapp.flidea.di.modules.*
 import cz.hlinkapp.flidea.fragments.FlideaFragment
+import cz.hlinkapp.flidea.fragments.SearchFilterFragment
 import dagger.Component
 import javax.inject.Singleton
 
@@ -30,6 +31,11 @@ interface FlideaAppComponent {
      * Inject to [FlideaFragment].
      */
     fun inject(fragment: FlideaFragment)
+
+    /**
+     * Inject to [SearchFilterFragment].
+     */
+    fun inject(fragment: SearchFilterFragment)
 
     /**
      * Returns this application's class.
