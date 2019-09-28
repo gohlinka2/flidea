@@ -1,7 +1,5 @@
 package cz.hlinkapp.flidea.fragments
 
-import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import androidx.core.widget.NestedScrollView
 import androidx.lifecycle.Observer
@@ -16,7 +14,6 @@ import cz.hlinkapp.flidea.contracts.ServerContract
 import cz.hlinkapp.flidea.di.FlideaApplication
 import cz.hlinkapp.flidea.fragments.FlideaFragment.Companion.ARG_FRAG_INDEX
 import cz.hlinkapp.flidea.model.Route
-import cz.hlinkapp.flidea.utils.OnFabClickedListener
 import cz.hlinkapp.flidea.view_models.MainViewModel
 import cz.hlinkapp.gohlinka2_utils2.fragments.abstraction.BaseFragment
 import cz.hlinkapp.gohlinka2_utils2.utils.OnChildScrollListener
@@ -32,18 +29,13 @@ import javax.inject.Inject
  * The fragment-index argument needs to be passed under the [ARG_FRAG_INDEX] key for this fragment to work.
  * Fragment-index is the index of this fragment in the ViewPager, so that it knows which flight idea to display.
  */
-class FlideaFragment : BaseFragment(), OnFabClickedListener {
-
-    override fun onFabClicked() {
-        if (mDeepLink != null) startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(mDeepLink)))
-    }
+class FlideaFragment : BaseFragment() {
 
     override val layoutId: Int
         get() = R.layout.fragment_flidea
 
     private lateinit var viewModel : MainViewModel
     private var mIndex : Int = -1
-    private var mDeepLink : String? = null
 
     private var mRouteRecyclerAdapter = RouteRecyclerAdapter()
 
@@ -89,7 +81,6 @@ class FlideaFragment : BaseFragment(), OnFabClickedListener {
                 airport.text = flight.flyTo
                 price.text = flight.price.toString()
                 currency.text = flight.currency
-                mDeepLink = flight.deep_link
 
                 val placeholder = CircularProgressDrawable(context!!)
                 placeholder.start()

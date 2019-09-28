@@ -1,5 +1,7 @@
 package cz.hlinkapp.flidea.activities
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
@@ -7,7 +9,9 @@ import androidx.lifecycle.ViewModelProvider
 import cz.hlinkapp.flidea.R
 import cz.hlinkapp.flidea.adapters.MainViewPagerAdapter
 import cz.hlinkapp.flidea.di.FlideaApplication
-import cz.hlinkapp.flidea.utils.*
+import cz.hlinkapp.flidea.utils.findBehavior
+import cz.hlinkapp.flidea.utils.format
+import cz.hlinkapp.flidea.utils.getStartOfDayTimestamp
 import cz.hlinkapp.flidea.view_models.MainViewModel
 import cz.hlinkapp.gohlinka2_utils2.utils.OnChildScrollListener
 import cz.hlinkapp.gohlinka2_utils2.utils.RequestInfo
@@ -36,6 +40,11 @@ class MainActivity : AppCompatActivity(), OnChildScrollListener{
     }
 
     private lateinit var viewModel : MainViewModel
+
+    private var mDeepLinks : ArrayList<String?> = ArrayList<String?>().apply {
+        clear()
+        for (i in 0 .. 4) this.add(null)
+    }
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
@@ -78,6 +87,7 @@ class MainActivity : AppCompatActivity(), OnChildScrollListener{
                     cal.timeInMillis = timestamp
                     footerTitle.text = getString(R.string.todays_flight_ideas_havent_been_downloaded_yet_showing_flideas_for,"${cal.get(Calendar.DAY_OF_MONTH).format(2)}/${(cal.get(Calendar.MONTH) + 1).format(2)}")
                 }
+                for (i in 0 .. 4) mDeepLinks[i] = it[i].deep_link
             } else {
                 fab.hide()
                 footerLayout.setVisible()
@@ -114,7 +124,10 @@ class MainActivity : AppCompatActivity(), OnChildScrollListener{
 
         viewPager.adapter = mAdapter.value
         tabLayout.setupWithViewPager(viewPager)
-        fab.setOnClickListener { (viewPager.getCurrentFragment(supportFragmentManager) as? OnFabClickedListener)?.onFabClicked() }
+        fab.setOnClickListener {
+            val deepLink = mDeepLinks[viewPager.currentItem]
+            if (deepLink != null) startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(deepLink)))
+        }
 
     }
 }
