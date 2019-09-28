@@ -1,6 +1,7 @@
 package cz.hlinkapp.flidea.utils
 
 import com.google.gson.Gson
+import cz.hlinkapp.flidea.contracts.ServerContract
 import cz.hlinkapp.flidea.model.SearchFilters
 import cz.hlinkapp.gohlinka2_utils2.utils.SharedPrefUtil
 import javax.inject.Inject
@@ -42,11 +43,13 @@ class SharedPrefHelper @Inject constructor(sharedPrefUtil: SharedPrefUtil, gson:
     }
 
     /**
-     * Retrieves the saved SearchFilters object.
+     * Retrieves the saved SearchFilters object, or creates a default one.
      * Save it with [saveSearchFilters].
      */
-    fun getSearchFilters() : SearchFilters? {
-        return mGson.fromJson(mSharedPrefUtil.getStringSharedPref(SP_KEY_SEARCH_FILTERS),SearchFilters::class.java)
+    fun getSearchFilters() : SearchFilters {
+        val jsonString = mSharedPrefUtil.getStringSharedPref(SP_KEY_SEARCH_FILTERS)
+        return if (jsonString != null && jsonString.isNotEmpty()) mGson.fromJson(jsonString,SearchFilters::class.java)
+        else SearchFilters(passengers = 1, airportCode = ServerContract.DEFAULT_AIRPORT_CODE, airportName = ServerContract.DEFAULT_AIRPORT_CODE)
     }
 
     companion object {
