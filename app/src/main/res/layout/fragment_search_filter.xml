@@ -3,10 +3,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/colorPrimary"
-    android:padding="16dp">
+    android:background="@color/colorPrimary">
 
     <TextView
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
         android:id="@+id/departureAirportLabel"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -17,16 +19,21 @@
         android:text="@string/departure_airport" />
 
     <TextView
-        android:elevation="3dp"
-        android:layout_marginTop="5dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/departureAirportLabel"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:padding="8dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="16dp"
         android:background="@drawable/bg_clickable_search_filter"
-        android:textColor="@color/colorPrimary"
-        android:text="Václav Havel Airport Prague"/>
+        android:clickable="true"
+        android:elevation="3dp"
+        android:focusable="true"
+        android:padding="8dp"
+        android:text="Václav Havel Airport Prague"
+        android:textColor="@color/color_bg_clickable_search_filter"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/departureAirportLabel"
+        app:layout_constraintStart_toStartOf="@+id/departureAirportLabel"
+        app:layout_constraintTop_toBottomOf="@id/departureAirportLabel"
+        app:layout_constraintVertical_bias="0.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
