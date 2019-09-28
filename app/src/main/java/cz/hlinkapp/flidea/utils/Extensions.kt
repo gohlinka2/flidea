@@ -2,6 +2,9 @@ package cz.hlinkapp.flidea.utils
 
 import android.view.View
 import androidx.coordinatorlayout.widget.CoordinatorLayout
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.viewpager.widget.ViewPager
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import java.util.*
@@ -43,3 +46,11 @@ fun Int.format(digits: Int): String = java.lang.String.format("%0${digits}d", th
  * Converts the [json] string to [T].
  */
 inline fun <reified T> Gson.fromJson(json: String) = this.fromJson<T>(json, object: TypeToken<T>() {}.type)
+
+/**
+ * Returns the fragment that is currently displayed in this ViewPager.
+ * @param supportFragmentManager is needed for this to work
+ */
+fun ViewPager.getCurrentFragment(supportFragmentManager: FragmentManager) : Fragment? {
+    return supportFragmentManager.findFragmentByTag("android:switcher:${this.id}:${this.currentItem}")
+}
