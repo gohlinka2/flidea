@@ -49,7 +49,7 @@ class SharedPrefHelper @Inject constructor(sharedPrefUtil: SharedPrefUtil, gson:
     fun getSearchFilters() : SearchFilters {
         val jsonString = mSharedPrefUtil.getStringSharedPref(SP_KEY_SEARCH_FILTERS)
         return if (jsonString != null && jsonString.isNotEmpty()) mGson.fromJson(jsonString,SearchFilters::class.java)
-        else SearchFilters(passengers = 1, airportCode = ServerContract.DEFAULT_AIRPORT_CODE, airportName = ServerContract.DEFAULT_AIRPORT_CODE)
+        else SearchFilters(passengers = 1, airportCode = ServerContract.DEFAULT_AIRPORT_CODE, airportName = ServerContract.DEFAULT_AIRPORT_NAME)
     }
 
     companion object {
