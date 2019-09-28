@@ -9,7 +9,6 @@ import cz.hlinkapp.flidea.contracts.ServerContract.Companion.QP_DATE_TO
 import cz.hlinkapp.flidea.contracts.ServerContract.Companion.QP_FLIGHT_TYPE
 import cz.hlinkapp.flidea.contracts.ServerContract.Companion.QP_FLY_FROM
 import cz.hlinkapp.flidea.contracts.ServerContract.Companion.QP_LIMIT
-import cz.hlinkapp.flidea.contracts.ServerContract.Companion.QP_LOCALE
 import cz.hlinkapp.flidea.contracts.ServerContract.Companion.QP_NIGHTS_IN_DST_FROM
 import cz.hlinkapp.flidea.contracts.ServerContract.Companion.QP_NIGHTS_IN_DST_TO
 import cz.hlinkapp.flidea.contracts.ServerContract.Companion.QP_ONE_FOR_CITY
@@ -19,6 +18,7 @@ import cz.hlinkapp.flidea.contracts.ServerContract.Companion.QP_SORT
 import cz.hlinkapp.flidea.contracts.ServerContract.Companion.VAL_FLIGHTS_TYPE
 import cz.hlinkapp.flidea.contracts.ServerContract.Companion.VAL_ONE_FOR_CITY
 import cz.hlinkapp.flidea.contracts.ServerContract.Companion.VAL_PARTNER
+import cz.hlinkapp.flidea.contracts.ServerContract.Companion.VAL_SORT
 import cz.hlinkapp.flidea.data.data_sources.room.MainDao
 import cz.hlinkapp.flidea.model.Flight
 import cz.hlinkapp.flidea.model.RootApiResponse
@@ -81,9 +81,8 @@ class ServerDataSource @Inject constructor(
             map[QP_PASSENGERS] = 1
             map[QP_PARTNER] = VAL_PARTNER
             map[QP_CURRENCY] = "CZK"
-            map[QP_LOCALE] = "cz"
             map[QP_LIMIT] = 150
-            map[QP_SORT] = "quality"
+            map[QP_SORT] = VAL_SORT
             map[QP_ASCENDING] = 0
             map[QP_ONE_FOR_CITY] = VAL_ONE_FOR_CITY
             mSkypickerService.getFlights(map).enqueue(object : Callback<RootApiResponse> {
