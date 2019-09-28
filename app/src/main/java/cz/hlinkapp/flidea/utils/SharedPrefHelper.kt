@@ -1,14 +1,17 @@
 package cz.hlinkapp.flidea.utils
 
+import com.google.gson.Gson
+import cz.hlinkapp.flidea.model.SearchFilters
 import cz.hlinkapp.gohlinka2_utils2.utils.SharedPrefUtil
 import javax.inject.Inject
 
 /**
  * A Shared Preferences util class containing several project-specific utility functions.
  */
-class SharedPrefHelper @Inject constructor(sharedPrefUtil: SharedPrefUtil) {
+class SharedPrefHelper @Inject constructor(sharedPrefUtil: SharedPrefUtil, gson: Gson) {
 
     private val mSharedPrefUtil = sharedPrefUtil
+    private val mGson = gson
 
     /**
      * Updates the last-fetched-day timestamp to the current day.
@@ -30,7 +33,24 @@ class SharedPrefHelper @Inject constructor(sharedPrefUtil: SharedPrefUtil) {
      */
     fun shouldFetchNewData() : Boolean = getStartOfDayTimestamp() != mSharedPrefUtil.getLongSharedPref(SP_KEY_LAST_FETCHED_DAY)
 
+    /**
+     * Saves the SearchFilters object for later use.
+     * Retrieve it with [getSearchFilters].
+     */
+    fun saveSearchFilters(filters: SearchFilters) {
+        mSharedPrefUtil.setStringSharedPref(SP_KEY_SEARCH_FILTERS,mGson.toJson(filters))
+    }
+
+    /**
+     * Retrieves the saved SearchFilters object.
+     * Save it with [saveSearchFilters].
+     */
+    fun getSearchFilters() : SearchFilters? {
+        return mGson.fromJson(mSharedPrefUtil.getStringSharedPref(SP_KEY_SEARCH_FILTERS),SearchFilters::class.java)
+    }
+
     companion object {
         const val SP_KEY_LAST_FETCHED_DAY = "lat_fetched_day"
+        const val SP_KEY_SEARCH_FILTERS = "searchFilters"
     }
 }
