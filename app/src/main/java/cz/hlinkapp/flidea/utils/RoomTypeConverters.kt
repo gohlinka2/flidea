@@ -3,7 +3,6 @@ package cz.hlinkapp.flidea.utils
 import androidx.room.TypeConverter
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
-import cz.hlinkapp.flidea.model.BagLimit
 import cz.hlinkapp.flidea.model.Country
 import cz.hlinkapp.flidea.model.Route
 import javax.inject.Singleton
@@ -52,16 +51,6 @@ class RoomTypeConverters {
     @TypeConverter
     fun mapOfStringToIntegerFromJson(input : String) : Map<String, Int>? {
         return mGson.fromJson<Map<String, Int>>(input)
-    }
-
-    @TypeConverter
-    fun bagLimitToJson(input : BagLimit) : String {
-        return mGson.toJson(input)
-    }
-
-    @TypeConverter
-    fun bagLimitFromJson(input : String) : BagLimit {
-        return mGson.fromJson<BagLimit>(input)
     }
 
     @TypeConverter
