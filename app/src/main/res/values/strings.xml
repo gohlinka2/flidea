@@ -11,4 +11,5 @@
     <string name="idle">Idle</string>
     <string name="fly_time">Fly %1$d:%2$d h</string>
     <string name="placeholder_loading">Loading</string>
+    <string name="book">Book</string>
 </resources>
