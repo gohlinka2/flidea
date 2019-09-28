@@ -5,6 +5,7 @@ package cz.hlinkapp.flidea.model
  */
 data class SearchFilters(
     var passengers : Int,
-    var airport: String
+    var airportName: String,
+    var airportCode: String
 ) {
 }
