@@ -34,8 +34,8 @@
         android:layout_width="0dp"
         android:paddingTop="8dp"
         android:paddingBottom="8dp"
-        android:paddingStart="16dp"
-        android:paddingEnd="16dp"
+        android:paddingStart="30dp"
+        android:paddingEnd="30dp"
         android:layout_height="wrap_content"
         android:background="@drawable/bg_container_stroke_color_divider_rounded_corners">
 
