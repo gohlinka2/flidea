@@ -1,6 +1,7 @@
 package cz.hlinkapp.flidea.fragments
 
 import android.os.Bundle
+import androidx.core.widget.NestedScrollView
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -15,6 +16,7 @@ import cz.hlinkapp.flidea.fragments.FlideaFragment.Companion.ARG_FRAG_INDEX
 import cz.hlinkapp.flidea.model.Route
 import cz.hlinkapp.flidea.view_models.MainViewModel
 import cz.hlinkapp.gohlinka2_utils2.fragments.abstraction.BaseFragment
+import cz.hlinkapp.gohlinka2_utils2.utils.OnChildScrollListener
 import cz.hlinkapp.gohlinka2_utils2.utils.setGone
 import cz.hlinkapp.gohlinka2_utils2.utils.setLayoutManagerSafely
 import cz.hlinkapp.gohlinka2_utils2.utils.setVisible
@@ -55,6 +57,11 @@ class FlideaFragment : BaseFragment() {
 
     override fun initViews(savedInstanceState: Bundle?) {
         super.initViews(savedInstanceState)
+
+        contentLayout.setOnScrollChangeListener(NestedScrollView.OnScrollChangeListener { _, _, scrollY, _, oldScrollY ->
+            if (scrollY > oldScrollY) (activity as? OnChildScrollListener)?.onScrollDown()
+            else if (scrollY < oldScrollY) (activity as? OnChildScrollListener)?.onScrollUp()
+        })
 
         //Set up the route recycler
         routeRecycler.setLayoutManagerSafely(LinearLayoutManager(context))

@@ -11,6 +11,7 @@ import cz.hlinkapp.flidea.utils.findBehavior
 import cz.hlinkapp.flidea.utils.format
 import cz.hlinkapp.flidea.utils.getStartOfDayTimestamp
 import cz.hlinkapp.flidea.view_models.MainViewModel
+import cz.hlinkapp.gohlinka2_utils2.utils.OnChildScrollListener
 import cz.hlinkapp.gohlinka2_utils2.utils.RequestInfo
 import cz.hlinkapp.gohlinka2_utils2.utils.setGone
 import cz.hlinkapp.gohlinka2_utils2.utils.setVisible
@@ -22,7 +23,15 @@ import javax.inject.Inject
 /**
  * The apps main activity, containing the ViewPager with the flight ideas.
  */
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), OnChildScrollListener{
+
+    override fun onScrollUp() {
+        fab?.show()
+    }
+
+    override fun onScrollDown() {
+        fab?.hide()
+    }
 
     private val mAdapter = lazy {
         MainViewPagerAdapter(supportFragmentManager)
