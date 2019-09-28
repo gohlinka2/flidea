@@ -16,14 +16,6 @@
         app:layout_constraintTop_toTopOf="@id/departure_airport" />
 
     <ImageView
-        android:id="@+id/airline_logo"
-        android:layout_width="36dp"
-        android:layout_height="36dp"
-        app:layout_constraintBottom_toBottomOf="@id/fly_time"
-        app:layout_constraintStart_toStartOf="@id/departure_airport"
-        app:layout_constraintTop_toTopOf="@+id/airline" />
-
-    <ImageView
         android:id="@+id/land_icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -32,6 +24,48 @@
         app:layout_constraintBottom_toBottomOf="@id/arrival_time"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/arrival_airport" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/flightLayout"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/departure_time"
+        android:layout_width="0dp"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_container_stroke_color_divider_rounded_corners">
+
+        <ImageView
+            android:id="@+id/airline_logo"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            app:layout_constraintBottom_toBottomOf="@id/fly_time"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/airline" />
+
+        <TextView
+            android:id="@+id/airline"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="@string/placeholder_loading"
+            android:textColor="@color/colorTextPrimary"
+            app:layout_constraintStart_toEndOf="@id/airline_logo"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/fly_time"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/placeholder_loading"
+            app:layout_constraintStart_toStartOf="@id/airline"
+            app:layout_constraintTop_toBottomOf="@id/airline" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <TextView
         android:id="@+id/departure_airport"
@@ -44,25 +78,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/takeoff_icon"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/airline"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
-        android:text="@string/placeholder_loading"
-        android:textColor="@color/colorTextPrimary"
-        app:layout_constraintStart_toEndOf="@id/airline_logo"
-        app:layout_constraintTop_toBottomOf="@id/departure_time" />
-
-    <TextView
-        android:id="@+id/fly_time"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="@string/placeholder_loading"
-        app:layout_constraintStart_toStartOf="@id/airline"
-        app:layout_constraintTop_toBottomOf="@id/airline" />
 
 
     <TextView
@@ -86,7 +101,7 @@
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/land_icon"
-        app:layout_constraintTop_toBottomOf="@id/fly_time" />
+        app:layout_constraintTop_toBottomOf="@id/flightLayout" />
 
     <TextView
         android:id="@+id/arrival_time"
