@@ -68,6 +68,7 @@ class MainActivity : AppCompatActivity(), OnChildScrollListener{
         //Observe flights to hide the footer or show it with the outdated data message
         viewModel.flights?.observe(this, Observer {
             if (it.isNotEmpty()) {
+                fab.show()
                 val timestamp = it[0].display_day_timestamp
                 if (timestamp == getStartOfDayTimestamp()) {
                     footerLayout.setGone()
@@ -78,6 +79,7 @@ class MainActivity : AppCompatActivity(), OnChildScrollListener{
                     footerTitle.text = getString(R.string.todays_flight_ideas_havent_been_downloaded_yet_showing_flideas_for,"${cal.get(Calendar.DAY_OF_MONTH).format(2)}/${(cal.get(Calendar.MONTH) + 1).format(2)}")
                 }
             } else {
+                fab.hide()
                 footerLayout.setVisible()
                 footerTitle.text = getString(R.string.data_not_saved)
             }
