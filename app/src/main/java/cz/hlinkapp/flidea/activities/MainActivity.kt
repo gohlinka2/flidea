@@ -5,11 +5,13 @@ import android.content.pm.ActivityInfo
 import android.net.Uri
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.commit
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import cz.hlinkapp.flidea.R
 import cz.hlinkapp.flidea.adapters.MainViewPagerAdapter
 import cz.hlinkapp.flidea.di.FlideaApplication
+import cz.hlinkapp.flidea.fragments.SearchFilterFragment
 import cz.hlinkapp.flidea.utils.findBehavior
 import cz.hlinkapp.flidea.utils.format
 import cz.hlinkapp.flidea.utils.getStartOfDayTimestamp
@@ -131,5 +133,8 @@ class MainActivity : AppCompatActivity(), OnChildScrollListener{
             if (deepLink != null) startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(deepLink)))
         }
 
+        supportFragmentManager.commit {
+            replace(searchFilterFragmentContainer.id,SearchFilterFragment(),SearchFilterFragment.TAG)
+        }
     }
 }
