@@ -15,7 +15,6 @@ class PickAirportActivity : AppCompatActivity() {
     }
 
     private fun initViews() {
-        setSupportActionBar(toolbar)
 
         searchView.isSubmitButtonEnabled = true
         searchView.setIconifiedByDefault(false)
