@@ -1,5 +1,6 @@
 package cz.hlinkapp.flidea.view_models
 
+import android.os.Handler
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import cz.hlinkapp.flidea.data.repositories.MainRepository
@@ -46,7 +47,7 @@ class MainViewModel @Inject constructor(repository: MainRepository): ViewModel()
      * Invalidates the currently saved flights and downloads new ones.
      * Call after the search filters have changed
      */
-    fun invalidateData() {
-        mMainRepository.invalidateData()
+    fun invalidateData(handler: Handler?) {
+        mMainRepository.invalidateData(handler)
     }
 }

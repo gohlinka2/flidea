@@ -1,10 +1,8 @@
 package cz.hlinkapp.flidea.data.data_sources.room
 
+import android.widget.Filter
 import androidx.lifecycle.LiveData
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
+import androidx.room.*
 import cz.hlinkapp.flidea.model.Flight
 import cz.hlinkapp.flidea.model.Flight.Companion.DISPLAY_DAY_TIMESTAMP_DEF_VAL
 
@@ -28,10 +26,10 @@ interface MainDao {
     fun saveFlights(flights: List<Flight>)
 
     /**
-     * Invalidates all flights. Call when the search filters have been changed.
+     * Deletes all flights. Call when the search filters have been changed.
      */
-    @Query("UPDATE flight SET invalidated=1")
-    fun invalidateData()
+    @Delete(entity = Flight::class)
+    fun deleteFlights()
 
     /**
      * Loads LiveData with flights to be displayed in UI.

@@ -1,11 +1,13 @@
 package cz.hlinkapp.flidea.data.repositories
 
+import android.os.Handler
 import androidx.lifecycle.LiveData
 import cz.hlinkapp.flidea.data.data_sources.room.MainDao
 import cz.hlinkapp.flidea.data.data_sources.server.MainServerDataSource
 import cz.hlinkapp.flidea.model.Flight
 import cz.hlinkapp.flidea.utils.SharedPrefHelper
 import cz.hlinkapp.gohlinka2_utils2.utils.RequestInfo
+import java.util.concurrent.Executor
 import javax.inject.Inject
 
 /**
@@ -15,12 +17,14 @@ import javax.inject.Inject
 class MainRepository @Inject constructor(
     dao: MainDao,
     serverDataSource: MainServerDataSource,
-    sharedPrefHelper: SharedPrefHelper
+    sharedPrefHelper: SharedPrefHelper,
+    executor: Executor
 ){
 
     private val mMainDao = dao
     private val mServerDataSource = serverDataSource
     private val mSharedPrefHelper = sharedPrefHelper
+    private val mExecutor = executor
 
     /**
      * An observable status of the flights download task.
@@ -48,10 +52,15 @@ class MainRepository @Inject constructor(
     /**
      * Invalidates the currently saved flights and downloads new ones.
      * Call after the search filters have changed.
+     * @param handler Needed to run things on main thread
      */
-    fun invalidateData() {
-        mMainDao.invalidateData()
-        mSharedPrefHelper.invalidateLastFetchedDay()
-        mServerDataSource.refreshFlights()
+    fun invalidateData(handler: Handler?) {
+        mExecutor.execute {
+            mMainDao.deleteFlights()
+            mSharedPrefHelper.invalidateLastFetchedDay()
+            handler?.post {
+                mServerDataSource.refreshFlights()
+            }
+        }
     }
 }

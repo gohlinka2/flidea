@@ -4,6 +4,7 @@ import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.net.Uri
 import android.os.Bundle
+import android.os.Handler
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.commit
 import androidx.lifecycle.Observer
@@ -160,7 +161,7 @@ class MainActivity : AppCompatActivity(), OnChildScrollListener{
                         BackdropBehavior.DropState.CLOSE -> {
                             frontLayerScrim.setGone()
                             val newSearchFilters = mSharedPrefHelper.getSearchFilters()
-                            if(newSearchFilters != mSearchFilters) viewModel.invalidateData()
+                            if(newSearchFilters != mSearchFilters) viewModel.invalidateData(Handler())
                         }
                     }
                 }
