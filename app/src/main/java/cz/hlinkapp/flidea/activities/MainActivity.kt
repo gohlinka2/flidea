@@ -160,9 +160,7 @@ class MainActivity : AppCompatActivity(), OnChildScrollListener{
                         BackdropBehavior.DropState.CLOSE -> {
                             frontLayerScrim.setGone()
                             val newSearchFilters = mSharedPrefHelper.getSearchFilters()
-                            if(newSearchFilters != mSearchFilters) {
-                                //TODO: invalidate data
-                            }
+                            if(newSearchFilters != mSearchFilters) viewModel.invalidateData()
                         }
                     }
                 }

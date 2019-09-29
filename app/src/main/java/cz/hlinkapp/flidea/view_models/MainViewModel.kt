@@ -41,4 +41,12 @@ class MainViewModel @Inject constructor(repository: MainRepository): ViewModel()
     fun retryRefreshingFlights() {
         mMainRepository.retryRefreshingFlights()
     }
+
+    /**
+     * Invalidates the currently saved flights and downloads new ones.
+     * Call after the search filters have changed
+     */
+    fun invalidateData() {
+        mMainRepository.invalidateData()
+    }
 }

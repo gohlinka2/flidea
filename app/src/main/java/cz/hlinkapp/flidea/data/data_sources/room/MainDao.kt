@@ -28,6 +28,12 @@ interface MainDao {
     fun saveFlights(flights: List<Flight>)
 
     /**
+     * Invalidates all flights. Call when the search filters have been changed.
+     */
+    @Query("UPDATE flight SET invalidated=1")
+    fun invalidateData()
+
+    /**
      * Loads LiveData with flights to be displayed in UI.
      * This loads 5 flights ordered by display_day_timestamp in descending order (flights selected for display on this or recent days have the highest timestamp).
      */
