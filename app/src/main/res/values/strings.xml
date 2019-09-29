@@ -18,4 +18,5 @@
     <string name="departure_to">Departure to:</string>
     <string name="return_from">Return from:</string>
     <string name="return_to">Return to:</string>
+    <string name="search_locations">Search locations</string>
 </resources>
