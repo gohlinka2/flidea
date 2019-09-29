@@ -1,7 +1,10 @@
 package cz.hlinkapp.flidea.data.data_sources.room
 
 import androidx.lifecycle.LiveData
-import androidx.room.*
+import androidx.room.Dao
+import androidx.room.Insert
+import androidx.room.OnConflictStrategy
+import androidx.room.Query
 import cz.hlinkapp.flidea.model.Flight
 import cz.hlinkapp.flidea.model.Flight.Companion.DISPLAY_DAY_TIMESTAMP_DEF_VAL
 
@@ -27,7 +30,7 @@ interface MainDao {
     /**
      * Deletes all flights. Call when the search filters have been changed.
      */
-    @Delete(entity = Flight::class)
+    @Query("DELETE FROM flight")
     fun deleteFlights()
 
     /**
