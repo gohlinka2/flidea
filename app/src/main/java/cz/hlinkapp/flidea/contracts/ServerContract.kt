@@ -1,5 +1,9 @@
 package cz.hlinkapp.flidea.contracts
 
+import cz.hlinkapp.flidea.model.SearchFilters
+import java.util.*
+import kotlin.collections.HashMap
+
 /**
  * An interface containing several constants and utility functions for communicating with the server.
  */
@@ -85,6 +89,29 @@ interface ServerContract {
             map[QP_LIMIT] = 20
             map[QP_ACTIVE_ONLY] = true
             map[QP_SORT] = VAL_SORT_BY_NAME
+            return map
+        }
+
+        /**
+         * Creates map of query params for flights search.
+         * @param searchFilters Current search filters.
+         */
+        fun createFlightQueryParams(searchFilters: SearchFilters) : HashMap<String,Any> {
+            val map = HashMap<String, Any>()
+            val cal = Calendar.getInstance()
+            map[QP_FLY_FROM] = searchFilters.airport.id
+            map[QP_DATE_FROM] = "${cal.get(Calendar.DAY_OF_MONTH)}/${cal.get(Calendar.MONTH) + 1}/${cal.get(Calendar.YEAR)}"
+            cal.add(Calendar.DAY_OF_MONTH,14)
+            map[QP_DATE_TO] = "${cal.get(Calendar.DAY_OF_MONTH)}/${cal.get(Calendar.MONTH) + 1}/${cal.get(Calendar.YEAR)}"
+            map[QP_NIGHTS_IN_DST_FROM] = 1
+            map[QP_NIGHTS_IN_DST_TO] = 14
+            map[QP_FLIGHT_TYPE] = VAL_FLIGHTS_TYPE
+            map[QP_PASSENGERS] = searchFilters.passengers
+            map[QP_PARTNER] = VAL_PARTNER
+            map[QP_LIMIT] = 150
+            map[QP_SORT] = VAL_SORT_BY_QUALITY
+            map[QP_ASCENDING] = 0
+            map[QP_ONE_FOR_CITY] = VAL_ONE_FOR_CITY
             return map
         }
     }
