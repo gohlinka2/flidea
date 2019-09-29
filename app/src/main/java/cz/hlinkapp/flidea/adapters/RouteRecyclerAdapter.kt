@@ -62,7 +62,7 @@ class RouteRecyclerAdapter : RecyclerView.Adapter<RouteRecyclerAdapter.ViewHolde
                 .error(R.drawable.ic_error)
                 .into(airline_logo)
 
-            airline.text = route.airline //TODO: for now. Replace with airline name from airlines api.
+            airline.text = route.airline
         }
     }
 
