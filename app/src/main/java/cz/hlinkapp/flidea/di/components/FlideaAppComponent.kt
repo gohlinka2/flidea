@@ -2,6 +2,7 @@ package cz.hlinkapp.flidea.di.components
 
 import android.app.Application
 import cz.hlinkapp.flidea.activities.MainActivity
+import cz.hlinkapp.flidea.activities.PickAirportActivity
 import cz.hlinkapp.flidea.di.FlideaApplication
 import cz.hlinkapp.flidea.di.modules.*
 import cz.hlinkapp.flidea.fragments.FlideaFragment
@@ -26,6 +27,11 @@ interface FlideaAppComponent {
      * Inject to [MainActivity].
      */
     fun inject(activity: MainActivity)
+
+    /**
+     * Inject to [PickAirportActivity].
+     */
+    fun inject(activity: PickAirportActivity)
 
     /**
      * Inject to [FlideaFragment].
