@@ -27,6 +27,7 @@ data class Flight (
 	var display_day_timestamp : Long,
 	var fetched_timestamp: Long,
 	var currency: String,
+	var invalidated: Boolean,
 
 	@PrimaryKey
 	@SerializedName("id") var id : String,

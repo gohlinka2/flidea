@@ -31,7 +31,7 @@ interface MainDao {
      * Loads LiveData with flights to be displayed in UI.
      * This loads 5 flights ordered by display_day_timestamp in descending order (flights selected for display on this or recent days have the highest timestamp).
      */
-    @Query("SELECT * FROM flight ORDER BY display_day_timestamp DESC LIMIT 5")
+    @Query("SELECT * FROM flight WHERE invalidated=0 ORDER BY display_day_timestamp DESC LIMIT 5")
     fun getFlightsForDisplay() : LiveData<List<Flight>>
 
     /**
@@ -39,7 +39,7 @@ interface MainDao {
      * This loads 5 flights that haven't been displayed yet, ordered by the time they were downloaded, then quality, then popularity, in descending order.
      * This should be called after new flights have been downloaded and saved to the db. The IDs returned from this should be then used to call [markFlightsForDisplay].
      */
-    @Query("SELECT id FROM flight WHERE display_day_timestamp =$DISPLAY_DAY_TIMESTAMP_DEF_VAL ORDER BY fetched_timestamp,quality,popularity DESC LIMIT 5")
+    @Query("SELECT id FROM flight WHERE display_day_timestamp =$DISPLAY_DAY_TIMESTAMP_DEF_VAL AND invalidated=0 ORDER BY fetched_timestamp,quality,popularity DESC LIMIT 5")
     fun selectFlightIdsForDisplay() : List<String>
 
     /**
