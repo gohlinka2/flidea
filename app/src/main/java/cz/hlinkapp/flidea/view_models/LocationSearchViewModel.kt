@@ -14,12 +14,10 @@ class LocationSearchViewModel @Inject constructor(repository: LocationSearchRepo
 
     private val mRepository : LocationSearchRepository = repository
 
-    private var mAirportResults : LiveData<List<Airport>>? = null
-
     /**
-     * The LiveData with airport search results.
+     * A LiveData with a list of airports returned from the search task.
      */
-    val airportResults : LiveData<List<Airport>>? get() = mAirportResults
+    val airportResults : LiveData<List<Airport>?> get() = mRepository.airportResults
 
     /**
      * An observable status of the airport results download task.
@@ -28,10 +26,10 @@ class LocationSearchViewModel @Inject constructor(repository: LocationSearchRepo
 
 
     /**
-     * Start the search, for flights with the search [query].
+     * Start the search for locations containing the search [query].
      * Call before accessing [airportResults].
      */
     fun searchAirports(query: String) {
-        mAirportResults = mRepository.searchAirports(query)
+        mRepository.searchLocations(query)
     }
 }
