@@ -10,7 +10,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activities.PickAirportActivity"></activity>
+        <activity android:name=".activities.PickAirportActivity" android:parentActivityName=".activities.MainActivity"></activity>
         <activity
             android:name=".activities.SplashScreenActivity"
             android:noHistory="true"
