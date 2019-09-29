@@ -1,7 +1,6 @@
 package cz.hlinkapp.flidea.model
 
 
-import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
@@ -24,48 +23,19 @@ For support, please feel free to contact me at https://www.linkedin.com/in/syeda
  */
 @Entity
 data class Flight (
-	@PrimaryKey
-	@SerializedName("id") var id : String,
+
 	var display_day_timestamp : Long,
 	var fetched_timestamp: Long,
-	@SerializedName("bags_price") var bags_price : Map<String,Double>,
-	@Embedded
-	@SerializedName("baglimit") var baglimit : BagLimit,
-//	@SerializedName("p1") var p1 : Int,
-//	@SerializedName("p2") var p2 : Int,
-//	@SerializedName("p3") var p3 : Int,
-	@SerializedName("price") var price : Double,
 	var currency: String,
+
+	@PrimaryKey
+	@SerializedName("id") var id : String,
+	@SerializedName("price") var price : Double,
 	@SerializedName("route") var route : List<Route>,
-//	@SerializedName("airlines") var airlines : List<String>,
-//	@SerializedName("pnr_count") var pnr_count : Int,
-//	@SerializedName("transfers") var transfers : List<String>,
-//	@SerializedName("has_airport_change") var has_airport_change : Boolean,
-//	@SerializedName("availability") var availability : Availability,
-	@SerializedName("dTime") var dTime : Int,
-	@SerializedName("dTimeUTC") var dTimeUTC : Int,
-	@SerializedName("aTime") var aTime : Int,
-	@SerializedName("aTimeUTC") var aTimeUTC : Int,
-	@SerializedName("nightsInDest") var nightsInDest : Int,
-	@SerializedName("flyFrom") var flyFrom : String,
 	@SerializedName("flyTo") var flyTo : String,
-	@SerializedName("cityFrom") var cityFrom : String,
 	@SerializedName("cityTo") var cityTo : String,
-	@SerializedName("countryFrom") var countryFrom : Country,
 	@SerializedName("countryTo") var countryTo : Country,
-	@SerializedName("mapIdfrom") var mapIdfrom : String,
-	@SerializedName("mapIdto") var mapIdto : String,
-	@SerializedName("distance") var distance : Double,
-//	@SerializedName("routes") var routes : List<List<String>>,
-	@SerializedName("virtual_interlining") var virtual_interlining : Boolean,
-	@SerializedName("fly_duration") var fly_duration : String,
-//	@SerializedName("duration") var duration : Duration,
-	@SerializedName("return_duration") var return_duration : String,
-//	@SerializedName("facilitated_booking_available") var facilitated_booking_available : Boolean,
-	@SerializedName("type_flights") var type_flights : List<String>,
-//	@SerializedName("found_on") var found_on : List<String>,
-	@SerializedName("conversion") var conversion : Map<String,Double>,
-	@SerializedName("booking_token") var booking_token : String,
+	@SerializedName("mapIdTo") var mapIdTo : String,
 	@SerializedName("popularity") var popularity : Long,
 	@SerializedName("quality") var quality : Double,
 	@SerializedName("deep_link") var deep_link : String

@@ -24,36 +24,6 @@ class RoomTypeConverters {
     }
 
     @TypeConverter
-    fun listOfStringToJson(input : List<String>) : String {
-        return mGson.toJson(input)
-    }
-
-    @TypeConverter
-    fun listOfStringFromJson(input : String) : List<String> {
-        return mGson.fromJson<List<String>>(input)
-    }
-
-    @TypeConverter
-    fun mapOfStringToDoubleToJson(input : Map<String,Double>) : String {
-        return mGson.toJson(input)
-    }
-
-    @TypeConverter
-    fun mapOfStringToDoubleFromJson(input : String) : Map<String,Double>? {
-        return mGson.fromJson<Map<String, Double>>(input)
-    }
-
-    @TypeConverter
-    fun mapOfStringToIntegerToJson(input : Map<String, Int>) : String {
-        return mGson.toJson(input)
-    }
-
-    @TypeConverter
-    fun mapOfStringToIntegerFromJson(input : String) : Map<String, Int>? {
-        return mGson.fromJson<Map<String, Int>>(input)
-    }
-
-    @TypeConverter
     fun countryToJson(input : Country) : String {
         return mGson.toJson(input)
     }

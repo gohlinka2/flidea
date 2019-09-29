@@ -20,18 +20,6 @@ For support, please feel free to contact me at https://www.linkedin.com/in/syeda
  */
 data class RootApiResponse (
 
-    @SerializedName("search_id") var search_id : String,
     @SerializedName("data") var data: List<Flight>,
-//    @SerializedName("connections") var connections : List<String>,
-//    @SerializedName("time") var time : Int,
-    @SerializedName("currency") var currency : String,
-    @SerializedName("currency_rate") var currency_rate : Double,
-//    @SerializedName("fx_rate") var fx_rate : Int,
-//    @SerializedName("refresh") var refresh : List<String>,
-//    @SerializedName("del") var del : Double,
-//    @SerializedName("ref_tasks") var ref_tasks : List<String>,
-    @SerializedName("search_params") var search_params : SearchParams
-//    @SerializedName("all_stopover_airports") var all_stopover_airports : List<String>,
-//    @SerializedName("all_airlines") var all_airlines : List<String>,
-//    @SerializedName("_results") var _results : Int
+    @SerializedName("currency") var currency : String
 )
