@@ -23,7 +23,7 @@ abstract class ViewModelModule {
 
     @Binds
     @IntoMap
-    @ViewModelKey(MainViewModel::class)
+    @ViewModelKey(LocationSearchViewModel::class)
     abstract fun bindLocationSearchViewModel (locationSearchViewModel: LocationSearchViewModel) : ViewModel
 
     @Binds
