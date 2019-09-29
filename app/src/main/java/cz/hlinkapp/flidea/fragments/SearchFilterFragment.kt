@@ -1,5 +1,6 @@
 package cz.hlinkapp.flidea.fragments
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import cz.hlinkapp.flidea.R
@@ -55,6 +56,16 @@ class SearchFilterFragment : BaseFragment() {
 
         departureAirport.setOnClickListener {
             startActivityForResult(Intent(context,PickAirportActivity::class.java), PICK_AIRPORT_ACTION_CODE)
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == PICK_AIRPORT_ACTION_CODE && resultCode == Activity.RESULT_OK && data != null) {
+            mSearchFilters.airport.name = data.getStringExtra(PickAirportActivity.KEY_AIRPORT_NAME)
+            mSearchFilters.airport.id = data.getStringExtra(PickAirportActivity.KEY_AIRPORT_ID)
+            departureAirport.text = mSearchFilters.airport.name
+            saveSearchFilters()
         }
     }
 
