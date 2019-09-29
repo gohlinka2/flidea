@@ -85,7 +85,7 @@ class FlideaFragment : BaseFragment() {
                 val placeholder = CircularProgressDrawable(context!!)
                 placeholder.start()
                 Glide.with(destinationImage)
-                    .load(ServerContract.createLocationImageUrl(flight.mapIdTo))
+                    .load(ServerContract.createLocationImageUrl(flight.mapIdto))
                     .error(R.drawable.image_error)
                     .placeholder(placeholder)
                     .downsample(DownsampleStrategy.FIT_CENTER)

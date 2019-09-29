@@ -35,7 +35,7 @@ data class Flight (
 	@SerializedName("flyTo") var flyTo : String,
 	@SerializedName("cityTo") var cityTo : String,
 	@SerializedName("countryTo") var countryTo : Country,
-	@SerializedName("mapIdTo") var mapIdTo : String,
+	@SerializedName("mapIdto") var mapIdto : String,
 	@SerializedName("popularity") var popularity : Long,
 	@SerializedName("quality") var quality : Double,
 	@SerializedName("deep_link") var deep_link : String
