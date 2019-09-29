@@ -1,7 +1,9 @@
 package cz.hlinkapp.flidea.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import cz.hlinkapp.flidea.R
+import cz.hlinkapp.flidea.activities.PickAirportActivity
 import cz.hlinkapp.flidea.di.FlideaApplication
 import cz.hlinkapp.flidea.model.SearchFilters
 import cz.hlinkapp.flidea.utils.SharedPrefHelper
@@ -50,6 +52,10 @@ class SearchFilterFragment : BaseFragment() {
                 saveSearchFilters()
             }
         }
+
+        departureAirport.setOnClickListener {
+            startActivityForResult(Intent(context,PickAirportActivity::class.java), PICK_AIRPORT_ACTION_CODE)
+        }
     }
 
     /**
@@ -61,5 +67,7 @@ class SearchFilterFragment : BaseFragment() {
 
     companion object {
         const val TAG = "SearchFilterFragment"
+
+        const val PICK_AIRPORT_ACTION_CODE = 12345
     }
 }
