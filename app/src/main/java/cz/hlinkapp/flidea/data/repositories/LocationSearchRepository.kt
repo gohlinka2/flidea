@@ -48,7 +48,7 @@ class LocationSearchRepository @Inject constructor(
     fun searchLocations(query: String) {
         val status = mAirportResultsStatus
         if (status.value?.isProcessing() == false) if (mConnectivityChecker.isConnected()) {
-            status.postValue(RequestInfo.processing())
+            status.value = RequestInfo.processing()
             mSkypickerService.getAirportSearchResults(ServerContract.createLocationSearchQueryParams(query)).enqueue(object :
                 Callback<LocationSearchRootApiResponse> {
                 override fun onFailure(call: Call<LocationSearchRootApiResponse>, t: Throwable) = status.postValue(RequestInfo.done(RequestInfo.RequestResult.FAILED))
