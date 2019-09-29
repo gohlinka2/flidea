@@ -10,7 +10,7 @@ import cz.hlinkapp.flidea.utils.RoomTypeConverters
  * Main Room's [RoomDatabase].
  */
 @TypeConverters(RoomTypeConverters::class)
-@Database(entities = [Flight::class], version = 3, exportSchema = false)
+@Database(entities = [Flight::class], version = 4, exportSchema = false)
 abstract class MainDatabase : RoomDatabase() {
     abstract fun mainDao() : MainDao
 }
