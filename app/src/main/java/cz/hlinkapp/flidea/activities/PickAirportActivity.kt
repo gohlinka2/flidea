@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import cz.hlinkapp.flidea.R
 import cz.hlinkapp.flidea.adapters.AirportSearchResultRecyclerAdapter
 import cz.hlinkapp.flidea.di.FlideaApplication
+import cz.hlinkapp.flidea.model.Airport
 import cz.hlinkapp.flidea.view_models.LocationSearchViewModel
 import cz.hlinkapp.gohlinka2_utils2.utils.RequestInfo
 import cz.hlinkapp.gohlinka2_utils2.utils.setGone
@@ -62,12 +63,12 @@ class PickAirportActivity : AppCompatActivity() {
 
         viewModel.airportResults.observe(this, Observer {
             when {
-                it != null -> {
+                it == null -> {
                     progressBar.setGone()
                     errorLayout.setGone()
                     resultsRecycler.setGone()
                 }
-                it?.isEmpty() != false -> {
+                it.isEmpty() -> {
                     progressBar.setGone()
                     errorLayout.setVisible()
                     resultsRecycler.setGone()
@@ -77,7 +78,7 @@ class PickAirportActivity : AppCompatActivity() {
                     progressBar.setGone()
                     errorLayout.setGone()
                     resultsRecycler.setVisible()
-                    mAirportSearchResultRecyclerAdapter.airports = it
+                    mAirportSearchResultRecyclerAdapter.airports = ArrayList<Airport>().apply { addAll(it) }
                 }
             }
 
@@ -90,11 +91,7 @@ class PickAirportActivity : AppCompatActivity() {
                 resultsRecycler.setGone()
             } else requestInfo.requestResult.getContentIfNotHandled().let {
                 when (it) {
-                    RequestInfo.RequestResult.OK -> {
-                        progressBar.setGone()
-                        errorLayout.setGone()
-                        resultsRecycler.setVisible()
-                    }
+                    RequestInfo.RequestResult.OK -> { }
                     RequestInfo.RequestResult.FAILED -> {
                         progressBar.setGone()
                         errorLayout.setVisible()
