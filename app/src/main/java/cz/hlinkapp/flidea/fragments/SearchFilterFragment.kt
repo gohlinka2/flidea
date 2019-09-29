@@ -32,7 +32,7 @@ class SearchFilterFragment : BaseFragment() {
 
         mSearchFilters = sharedPrefHelper.getSearchFilters()
 
-        departureAirport.text = mSearchFilters.airportName
+        departureAirport.text = mSearchFilters.airport.name
         numberOfPassengers.text = mSearchFilters.passengers.toString()
 
         addButton.setOnClickListener {
