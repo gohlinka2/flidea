@@ -65,9 +65,8 @@ class MainServerDataSource @Inject constructor(
      * Only executes the task when there is access to internet, no previous task is running and the data hasn't been downloaded yet today.
      */
     fun refreshFlights() {
-        val status = mFlightsStatus
-        if ( mSharedPrefHelper.shouldFetchNewData() && status.value?.isProcessing() == false) if (mConnectivityChecker.isConnected()) {
-            status.postValue(RequestInfo.processing())
+        if ( mSharedPrefHelper.shouldFetchNewData() && mFlightsStatus.value?.isProcessing() == false) if (mConnectivityChecker.isConnected()) {
+            mFlightsStatus.value = RequestInfo.processing()
             val cal = Calendar.getInstance()
             val map = HashMap<String, Any>()
             //TODO: change hardcoded values
@@ -86,20 +85,21 @@ class MainServerDataSource @Inject constructor(
             map[QP_ASCENDING] = 0
             map[QP_ONE_FOR_CITY] = VAL_ONE_FOR_CITY
             mSkypickerService.getFlights(map).enqueue(object : Callback<RootApiResponse> {
-                override fun onFailure(call: Call<RootApiResponse>, t: Throwable) = status.postValue(RequestInfo.done(RequestInfo.RequestResult.FAILED))
+                override fun onFailure(call: Call<RootApiResponse>, t: Throwable) = mFlightsStatus.postValue(RequestInfo.done(RequestInfo.RequestResult.FAILED))
                 override fun onResponse(call: Call<RootApiResponse>, response: Response<RootApiResponse>) =
                     if (response.isSuccessful && response.body() != null && response.body()!!.data.isNotEmpty()) {
                         mExecutor.execute {
-                            handleFlightSaving(response.body()!!)
-                            status.postValue(RequestInfo.done(RequestInfo.RequestResult.OK))
-                        } } else status.postValue(RequestInfo.done(RequestInfo.RequestResult.FAILED)) })
-        } else status.postValue(RequestInfo.done(RequestInfo.RequestResult.NO_INTERNET))
+                            if (handleFlightSaving(response.body()!!)) mFlightsStatus.postValue(RequestInfo.done(RequestInfo.RequestResult.OK))
+                            else mFlightsStatus.postValue(RequestInfo.done(RequestInfo.RequestResult.FAILED))
+                        } } else mFlightsStatus.postValue(RequestInfo.done(RequestInfo.RequestResult.FAILED)) })
+        } else mFlightsStatus.postValue(RequestInfo.done(RequestInfo.RequestResult.NO_INTERNET))
     }
 
     /**
      * Handles the flight saving according to [MainDao]'s usage flowchart.
+     * @return Whether the operation was successful.
      */
-    fun handleFlightSaving(rootApiResponse: RootApiResponse) {
+    fun handleFlightSaving(rootApiResponse: RootApiResponse) : Boolean{
         //Write control values to flights
         for (flight in rootApiResponse.data) {
             flight.currency = rootApiResponse.currency
@@ -109,8 +109,9 @@ class MainServerDataSource @Inject constructor(
 
         mDao.saveFlights(rootApiResponse.data)
         val ids = mDao.selectFlightIdsForDisplay()
+        if (ids.isEmpty()) return false
         mDao.markFlightsForDisplay(getStartOfDayTimestamp(),ids)
-
         mSharedPrefHelper.saveLastFetchedDay()
+        return true
     }
 }
