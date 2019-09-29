@@ -162,6 +162,7 @@ class MainActivity : AppCompatActivity(), OnChildScrollListener{
                             frontLayerScrim.setGone()
                             val newSearchFilters = mSharedPrefHelper.getSearchFilters()
                             if(newSearchFilters != mSearchFilters) viewModel.invalidateData(Handler())
+                            mSearchFilters = newSearchFilters
                         }
                     }
                 }
