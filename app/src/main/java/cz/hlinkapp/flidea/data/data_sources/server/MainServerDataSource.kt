@@ -36,10 +36,10 @@ import javax.inject.Singleton
 import kotlin.collections.HashMap
 
 /**
- * Class for network calls. Fetches new flight data and handles its saving into the db.
+ * Class for main network calls. Fetches new flight data and handles its saving into the db.
  */
 @Singleton
-class ServerDataSource @Inject constructor(
+class MainServerDataSource @Inject constructor(
     executor: Executor,
     dao: MainDao,
     connectivityChecker: ConnectivityChecker,
