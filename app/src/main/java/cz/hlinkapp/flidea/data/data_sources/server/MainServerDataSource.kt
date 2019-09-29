@@ -18,7 +18,7 @@ import cz.hlinkapp.flidea.contracts.ServerContract.Companion.QP_SORT
 import cz.hlinkapp.flidea.contracts.ServerContract.Companion.VAL_FLIGHTS_TYPE
 import cz.hlinkapp.flidea.contracts.ServerContract.Companion.VAL_ONE_FOR_CITY
 import cz.hlinkapp.flidea.contracts.ServerContract.Companion.VAL_PARTNER
-import cz.hlinkapp.flidea.contracts.ServerContract.Companion.VAL_SORT
+import cz.hlinkapp.flidea.contracts.ServerContract.Companion.VAL_SORT_BY_QUALITY
 import cz.hlinkapp.flidea.data.data_sources.room.MainDao
 import cz.hlinkapp.flidea.model.Flight
 import cz.hlinkapp.flidea.model.RootApiResponse
@@ -82,7 +82,7 @@ class MainServerDataSource @Inject constructor(
             map[QP_PARTNER] = VAL_PARTNER
             map[QP_CURRENCY] = "CZK"
             map[QP_LIMIT] = 150
-            map[QP_SORT] = VAL_SORT
+            map[QP_SORT] = VAL_SORT_BY_QUALITY
             map[QP_ASCENDING] = 0
             map[QP_ONE_FOR_CITY] = VAL_ONE_FOR_CITY
             mSkypickerService.getFlights(map).enqueue(object : Callback<RootApiResponse> {

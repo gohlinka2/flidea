@@ -2,7 +2,7 @@ package cz.hlinkapp.flidea.data.repositories
 
 import androidx.lifecycle.LiveData
 import cz.hlinkapp.flidea.data.data_sources.room.MainDao
-import cz.hlinkapp.flidea.data.data_sources.server.ServerDataSource
+import cz.hlinkapp.flidea.data.data_sources.server.MainServerDataSource
 import cz.hlinkapp.flidea.model.Flight
 import cz.hlinkapp.gohlinka2_utils2.utils.RequestInfo
 import javax.inject.Inject
@@ -13,7 +13,7 @@ import javax.inject.Inject
  */
 class MainRepository @Inject constructor(
     dao: MainDao,
-    serverDataSource: ServerDataSource
+    serverDataSource: MainServerDataSource
 ){
 
     private val mMainDao = dao
