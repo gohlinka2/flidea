@@ -6,6 +6,8 @@ import cz.hlinkapp.flidea.data.repositories.LocationSearchRepository
 import cz.hlinkapp.flidea.model.Airport
 import cz.hlinkapp.gohlinka2_utils2.utils.RequestInfo
 import javax.inject.Inject
+import cz.hlinkapp.flidea.activities.PickAirportActivity
+
 
 /**
  * A ViewModel for [PickAirportActivity].
