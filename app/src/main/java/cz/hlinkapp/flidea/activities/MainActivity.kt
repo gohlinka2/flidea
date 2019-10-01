@@ -160,6 +160,7 @@ class MainActivity : AppCompatActivity(), OnChildScrollListener{
                         BackdropBehavior.DropState.OPEN -> frontLayerScrim.setVisible()
                         BackdropBehavior.DropState.CLOSE -> {
                             frontLayerScrim.setGone()
+                            //Check if the search filters have changed and invalidate the data if they did
                             val newSearchFilters = mSharedPrefHelper.getSearchFilters()
                             if(newSearchFilters != mSearchFilters) viewModel.invalidateData(Handler())
                             mSearchFilters = newSearchFilters
@@ -179,6 +180,9 @@ class MainActivity : AppCompatActivity(), OnChildScrollListener{
         }
     }
 
+    /**
+     * Loads search filters saved in the shared preferences
+     */
     private fun initSearchFilters() {
         mSearchFilters = mSharedPrefHelper.getSearchFilters()
     }
