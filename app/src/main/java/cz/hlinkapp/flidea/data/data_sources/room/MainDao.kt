@@ -7,6 +7,7 @@ import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import cz.hlinkapp.flidea.model.Flight
 import cz.hlinkapp.flidea.model.Flight.Companion.DISPLAY_DAY_TIMESTAMP_DEF_VAL
+import cz.hlinkapp.flidea.utils.SharedPrefHelper
 
 /**
  * Main Room's Data Access Object for accessing the db.
@@ -16,6 +17,10 @@ import cz.hlinkapp.flidea.model.Flight.Companion.DISPLAY_DAY_TIMESTAMP_DEF_VAL
  * -> [saveFlights] and call [SharedPrefHelper.saveLastFetchedDay] ->
  * -> call [selectFlightIdsForDisplay] and then use the returned IDs to call [markFlightsForDisplay] ->
  * -> LiveData refreshes and the UI displays the new flights.
+ *
+ * Note on changing search filters:
+ * After the search filters have changed, the data needs to be invalidated and downloaded again. To do that:
+ * Call [deleteFlights] -> Call [SharedPrefHelper.invalidateLastFetchedDay] -> initiate the download process (explained in the flowchart mentioned above) again.
  */
 @Dao
 interface MainDao {
