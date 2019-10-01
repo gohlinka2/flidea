@@ -15,14 +15,9 @@ import cz.hlinkapp.flidea.di.FlideaApplication
 import cz.hlinkapp.flidea.fragments.SearchFilterFragment
 import cz.hlinkapp.flidea.model.SearchFilters
 import cz.hlinkapp.flidea.utils.SharedPrefHelper
-import cz.hlinkapp.flidea.utils.findBehavior
 import cz.hlinkapp.flidea.utils.format
-import cz.hlinkapp.flidea.utils.getStartOfDayTimestamp
 import cz.hlinkapp.flidea.view_models.MainViewModel
-import cz.hlinkapp.gohlinka2_utils2.utils.OnChildScrollListener
-import cz.hlinkapp.gohlinka2_utils2.utils.RequestInfo
-import cz.hlinkapp.gohlinka2_utils2.utils.setGone
-import cz.hlinkapp.gohlinka2_utils2.utils.setVisible
+import cz.hlinkapp.gohlinka2_utils2.utils.*
 import kotlinx.android.synthetic.main.activity_main.*
 import ru.semper_viventem.backdrop.BackdropBehavior
 import java.util.*

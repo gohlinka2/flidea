@@ -5,6 +5,7 @@ import cz.hlinkapp.flidea.contracts.ServerContract
 import cz.hlinkapp.flidea.model.Airport
 import cz.hlinkapp.flidea.model.SearchFilters
 import cz.hlinkapp.gohlinka2_utils2.utils.SharedPrefUtil
+import cz.hlinkapp.gohlinka2_utils2.utils.getStartOfDayTimestamp
 import javax.inject.Inject
 
 /**

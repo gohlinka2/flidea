@@ -5,6 +5,7 @@ import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import cz.hlinkapp.flidea.model.Country
 import cz.hlinkapp.flidea.model.Route
+import cz.hlinkapp.gohlinka2_utils2.utils.fromJson
 import javax.inject.Singleton
 
 /**

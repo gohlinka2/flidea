@@ -7,9 +7,9 @@ import cz.hlinkapp.flidea.data.data_sources.room.MainDao
 import cz.hlinkapp.flidea.model.Flight
 import cz.hlinkapp.flidea.model.RootApiResponse
 import cz.hlinkapp.flidea.utils.SharedPrefHelper
-import cz.hlinkapp.flidea.utils.getStartOfDayTimestamp
 import cz.hlinkapp.gohlinka2_utils2.utils.ConnectivityChecker
 import cz.hlinkapp.gohlinka2_utils2.utils.RequestInfo
+import cz.hlinkapp.gohlinka2_utils2.utils.getStartOfDayTimestamp
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
