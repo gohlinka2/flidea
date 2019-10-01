@@ -2,10 +2,10 @@ package cz.hlinkapp.flidea.di.modules
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import cz.hlinkapp.flidea.utils.FlideaViewModelFactory
-import cz.hlinkapp.flidea.utils.ViewModelKey
 import cz.hlinkapp.flidea.view_models.LocationSearchViewModel
 import cz.hlinkapp.flidea.view_models.MainViewModel
+import cz.hlinkapp.gohlinka2_utils2.utils.AppViewModelFactory
+import cz.hlinkapp.gohlinka2_utils2.utils.ViewModelKey
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
@@ -27,5 +27,5 @@ abstract class ViewModelModule {
     abstract fun bindLocationSearchViewModel (locationSearchViewModel: LocationSearchViewModel) : ViewModel
 
     @Binds
-    abstract fun bindViewModelFactory(factory: FlideaViewModelFactory): ViewModelProvider.Factory
+    abstract fun bindViewModelFactory(factory: AppViewModelFactory): ViewModelProvider.Factory
 }
