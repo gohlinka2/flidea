@@ -9,6 +9,8 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import cz.hlinkapp.flidea.R
+import cz.hlinkapp.flidea.activities.PickAirportActivity.Companion.KEY_AIRPORT_ID
+import cz.hlinkapp.flidea.activities.PickAirportActivity.Companion.KEY_AIRPORT_NAME
 import cz.hlinkapp.flidea.adapters.AirportSearchResultRecyclerAdapter
 import cz.hlinkapp.flidea.di.FlideaApplication
 import cz.hlinkapp.flidea.model.Airport
@@ -20,6 +22,11 @@ import cz.hlinkapp.gohlinka2_utils2.utils.setVisible
 import kotlinx.android.synthetic.main.activity_pick_airport.*
 import javax.inject.Inject
 
+/**
+ * An Activity for searching for and picking an airport.
+ * Launch using [startActivityForResult].
+ * If successful, the picked airport will be saved under the [KEY_AIRPORT_ID] and [KEY_AIRPORT_NAME] keys.
+ */
 class PickAirportActivity : AppCompatActivity() {
 
     private lateinit var viewModel : LocationSearchViewModel
@@ -45,6 +52,9 @@ class PickAirportActivity : AppCompatActivity() {
         initViews()
     }
 
+    /**
+     * Initializes views.
+     */
     private fun initViews() {
 
         resultsRecycler.setLayoutManagerSafely(LinearLayoutManager(this))
@@ -116,7 +126,13 @@ class PickAirportActivity : AppCompatActivity() {
     }
 
     companion object {
+        /**
+         * Use this key to retrieve the name of the picked airport from the result data intent.
+         */
         const val KEY_AIRPORT_NAME = "airportName"
+        /**
+         * Use this key to retrieve the id of the picked airport from the result data intent.
+         */
         const val KEY_AIRPORT_ID = "airportId"
     }
 }
