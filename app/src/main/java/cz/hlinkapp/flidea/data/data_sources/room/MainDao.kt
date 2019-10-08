@@ -7,14 +7,16 @@ import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import cz.hlinkapp.flidea.model.Flight
 import cz.hlinkapp.flidea.model.Flight.Companion.DISPLAY_DAY_TIMESTAMP_DEF_VAL
+import cz.hlinkapp.flidea.model.RootApiResponse
 import cz.hlinkapp.flidea.utils.SharedPrefHelper
 
 /**
  * Main Room's Data Access Object for accessing the db.
  *
  * Usage flowchart:
- * Call [getFlightsForDisplay], observe the LiveDate and display the flights -> download new flights if they haven't been downloaded today yet (use [SharedPrefHelper.shouldFetchNewData] to check) ->
- * -> [saveFlights] and call [SharedPrefHelper.saveLastFetchedDay] ->
+ * Call [getFlightsForDisplay], observe the LiveData and display the flights in UI -> download new flights if they haven't been downloaded today yet (use [SharedPrefHelper.shouldFetchNewData] to check) ->
+ * -> For every newly downloaded flight, set [Flight.fetched_timestamp] to this moment, set [Flight.display_day_timestamp] to [Flight.DISPLAY_DAY_TIMESTAMP_DEF_VAL]
+ * and copy the currency from [RootApiResponse.currency] to [Flight.currency], then: -> [saveFlights] and call [SharedPrefHelper.saveLastFetchedDay] ->
  * -> call [selectFlightIdsForDisplay] and then use the returned IDs to call [markFlightsForDisplay] ->
  * -> LiveData refreshes and the UI displays the new flights.
  *
