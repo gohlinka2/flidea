@@ -4,9 +4,7 @@ import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Path
 import android.graphics.RectF
-import android.graphics.Region
 import android.util.AttributeSet
-import android.view.View
 import android.widget.FrameLayout
 import androidx.annotation.Nullable
 import cz.hlinkapp.flidea.R
@@ -14,7 +12,7 @@ import cz.hlinkapp.flidea.R
 
 /**
  * Custom wrapper view to get round corner round view
- * From https://gist.github.com/Ahmed-Abdelmeged/662007e7af74301c6758634041082676
+ * From https://gist.github.com/Ahmed-Abdelmeged/662007e7af74301c6758634041082676, modified
  */
 class RoundedView : FrameLayout {
 
@@ -59,7 +57,6 @@ class RoundedView : FrameLayout {
             typedArray.getDimension(R.styleable.RoundedView_bottomRightCornerRadius, 0f)
 
         typedArray.recycle()
-        setLayerType(View.LAYER_TYPE_SOFTWARE, null)
     }
 
     override fun dispatchDraw(canvas: Canvas) {
@@ -84,7 +81,6 @@ class RoundedView : FrameLayout {
             Path.Direction.CW
         )
 
-        canvas.clipPath(path, Region.Op.REPLACE)
         canvas.clipPath(path)
 
         super.dispatchDraw(canvas)
