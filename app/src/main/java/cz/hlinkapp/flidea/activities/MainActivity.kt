@@ -15,7 +15,6 @@ import cz.hlinkapp.flidea.di.FlideaApplication
 import cz.hlinkapp.flidea.fragments.SearchFilterFragment
 import cz.hlinkapp.flidea.model.SearchFilters
 import cz.hlinkapp.flidea.utils.SharedPrefHelper
-import cz.hlinkapp.flidea.utils.format
 import cz.hlinkapp.flidea.view_models.MainViewModel
 import cz.hlinkapp.gohlinka2_utils2.utils.*
 import kotlinx.android.synthetic.main.activity_main.*
@@ -100,7 +99,7 @@ class MainActivity : AppCompatActivity(), OnChildScrollListener{
                     footerLayout.setVisible()
                     val cal = Calendar.getInstance()
                     cal.timeInMillis = timestamp
-                    footerTitle.text = getString(R.string.todays_flight_ideas_havent_been_downloaded_yet_showing_flideas_for,"${cal.get(Calendar.DAY_OF_MONTH).format(2)}/${(cal.get(Calendar.MONTH) + 1).format(2)}")
+                    footerTitle.text = getString(R.string.todays_flight_ideas_havent_been_downloaded_yet_showing_flideas_for,cal.get(Calendar.DAY_OF_MONTH),cal.get(Calendar.MONTH) + 1)
                 }
                 for (i in 0 .. 4) mDeepLinks[i] = it[i].deep_link
             } else {

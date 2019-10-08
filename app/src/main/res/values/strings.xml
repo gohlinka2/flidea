@@ -6,10 +6,11 @@
     <string name="download_ok">Download OK</string>
     <string name="download_failed">Download failed</string>
     <string name="no_internet">No internet</string>
-    <string name="todays_flight_ideas_havent_been_downloaded_yet_showing_flideas_for">Today\'s Flideas haven\'t been downloaded yet. Showing data for %1$s</string>
+    <string name="todays_flight_ideas_havent_been_downloaded_yet_showing_flideas_for">Today\'s Flideas haven\'t been downloaded yet. Showing data for %1$02d/%2$02d</string>
     <string name="data_not_saved">Data not saved</string>
     <string name="idle">Idle</string>
-    <string name="fly_time">Fly %1$d:%2$d h</string>
+    <string name="fly_time">Fly %1$02d:%2$02d h</string>
+    <string name="date_time_formatted">%1$02d/%2$02d/%3$d %4$02d:%5$02d</string>
     <string name="placeholder_loading">Loading</string>
     <string name="book">Book</string>
     <string name="departure_airport">Departure airport:</string>
