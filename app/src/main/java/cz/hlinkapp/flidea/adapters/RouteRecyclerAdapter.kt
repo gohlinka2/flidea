@@ -10,7 +10,6 @@ import com.bumptech.glide.load.resource.bitmap.DownsampleStrategy
 import cz.hlinkapp.flidea.R
 import cz.hlinkapp.flidea.contracts.ServerContract
 import cz.hlinkapp.flidea.model.Route
-import cz.hlinkapp.flidea.utils.format
 import kotlinx.android.synthetic.main.item_route.view.*
 import java.util.*
 import kotlin.collections.ArrayList
@@ -45,8 +44,8 @@ class RouteRecyclerAdapter : RecyclerView.Adapter<RouteRecyclerAdapter.ViewHolde
 
             val dCal = Calendar.getInstance().apply { timeInMillis = route.dTime * 1000}
             val aCal = Calendar.getInstance().apply { timeInMillis = route.aTime * 1000}
-            departure_time.text = "${dCal.get(Calendar.DAY_OF_MONTH).format(2)}/${(dCal.get(Calendar.MONTH) + 1).format(2)}/${dCal.get(Calendar.YEAR)} ${dCal.get(Calendar.HOUR_OF_DAY).format(2)}:${dCal.get(Calendar.MINUTE).format(2)}"
-            arrival_time.text = "${aCal.get(Calendar.DAY_OF_MONTH).format(2)}/${(aCal.get(Calendar.MONTH) + 1).format(2)}/${aCal.get(Calendar.YEAR)} ${aCal.get(Calendar.HOUR_OF_DAY).format(2)}:${aCal.get(Calendar.MINUTE).format(2)}"
+            departure_time.text = context.getString(R.string.date_time_formatted,dCal.get(Calendar.DAY_OF_MONTH),dCal.get(Calendar.MONTH) + 1,dCal.get(Calendar.YEAR),dCal.get(Calendar.HOUR_OF_DAY),dCal.get(Calendar.MINUTE))
+            arrival_time.text = context.getString(R.string.date_time_formatted,aCal.get(Calendar.DAY_OF_MONTH),aCal.get(Calendar.MONTH) + 1,aCal.get(Calendar.YEAR),aCal.get(Calendar.HOUR_OF_DAY),aCal.get(Calendar.MINUTE))
             val flightTime = route.aTimeUTC - route.dTimeUTC
             val flightHours = flightTime / 3600
             val flightMinutes = (flightTime / 60) % 60
