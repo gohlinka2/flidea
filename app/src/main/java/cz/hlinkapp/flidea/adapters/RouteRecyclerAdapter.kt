@@ -21,7 +21,7 @@ class RouteRecyclerAdapter : RecyclerView.Adapter<RouteRecyclerAdapter.ViewHolde
 
     /**
      * The routes that should be displayed. 
-     * The view will by automatically notified of dataSet changes when this field is udpdated.
+     * The view will by automatically notified of dataSet changes when this field is updated.
      */
     var routes = ArrayList<Route>()
         set(value) {
